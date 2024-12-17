@@ -82,5 +82,3 @@
     </section>
 
     <?php include("./inc/footer.html")?>
-</body>
-</html>
