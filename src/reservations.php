@@ -4,8 +4,10 @@
 <section class="pt-10 pb-20">
     <h1 class="text-3xl font-bold text-center mb-10">Reservations</h1>
 
-
-
+    <div class="container">
+        <div class="text-lg mb-2">Filter:</div>
+        <input id="search" type="text" class="bg-[#eee] rounded-lg mb-10 py-1 outline-none px-3" placeholder="Search by menu, date, state">
+    </div>
     <div class="container relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-secondary dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -103,8 +105,20 @@
             </tbody>
         </table>
     </div>
-
-
 </section>
+
+<script>
+    const searchInput = document.getElementById("search");
+    const reservationsElements = Array.from(document.querySelector("tbody").children);
+    searchInput.onkeyup = function() {
+        reservationsElements.forEach(ele => {
+            if(ele.querySelector("th").textContent.toLowerCase().search(searchInput.value.toLowerCase()) != -1){
+                ele.classList.remove("hidden");
+            }else{
+                ele.classList.add("hidden");
+            }
+        });
+    };
+</script>
 
 <?php include("./inc/footer.html")?>
