@@ -1,10 +1,10 @@
-<?php include("./inc/header.html")?>
+<?php include("../inc/header.html")?>
 
 <section class="pt-10 pb-20">
     <h1 class="text-3xl font-bold text-center mb-10">Edit a Reservation</h1>
     <div class="container flex flex-col sm:flex-row justify-center gap-20 sm:gap-14">
         <div class="flex justify-center">
-            <img class="border-[6px] border-secondary rounded-lg w-96" src="../assets/images/dishes/23808324.jpg" alt="Menu">
+            <img class="border-[6px] border-secondary rounded-lg w-96" src="../../assets/images/dishes/23808324.jpg" alt="Menu">
         </div>
         <form action="" class="sm:w-1/2">
             <div class="flex flex-col gap-6">
@@ -85,4 +85,4 @@
         }
 </script>
 
-<?php include("./inc/footer.html")?>
+<?php include("../inc/footer.html")?>
