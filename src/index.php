@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" class="text-[12px] md:text-[14px] lg:text-[16px]">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
-    <link rel="stylesheet" href="output.css">
-</head>
-<body>
-    <header class="bg-secondary">
-        <div class="sm:container sm:mx-auto sm:py-5 relative flex justify-between items-center">
-            <div class="px-2 py-5 sm:p-0 relative bg-secondary flex justify-between flex-1 items-center z-20">
-                <span class="text-primary font-bold text-xl font-lux">DINOUS</span>
-                <span id="burger-menu" class="sm:hidden cursor-pointer text-based text-3xl"><i class="fa-solid fa-bars"></i></span>
-            </div>
-            <ul id="menu" class="flex flex-col sm:flex-row absolute sm:static bg-secondary w-full sm:w-fit left-0 z-10 -top-[300%] py-4 sm:py-0 rounded-b-lg sm:rounded-none items-center sm:gap-10 text-based transition-all duration-500">
-                <li class="hover:text-primary hover:border-primary transition-all duration-300 border-b border-based w-full text-center pb-5 sm:p-0 sm:border-none sm:w-fit"><a href="">Menus</a></li>
-                <li class="hover:text-primary hover:border-primary transition-all duration-300 border-b border-based w-full text-center py-5 sm:p-0 sm:border-none sm:w-fit"><a href="">Reservations</a></li>
-                <li class="hover:text-primary hover:border-primary transition-all duration-300 border-b border-based w-full text-center py-5 sm:p-0 sm:border-none sm:w-fit"><a href="">Book a reservation</a></li>
-                <li class="bg-red-500 px-2 py-1 rounded-lg hover:bg-red-600 transition-all duration-300 mt-5 sm:m-0"><a href="">Logout</a></li>
-            </ul>
-        </div>
-    </header>
-
+    <?php include("./inc/header.html")?>
 
     <section class="relative">
         <img class="max-h-[80vh] min-h-[35vh] object-cover w-full" src="../assets/images/steak.webp" alt="Steak">
@@ -106,36 +81,6 @@
         </div>
     </section>
 
-    <footer class="bg-secondary py-8">
-        <div class="container flex justify-between">
-            <div class="text-3xl font-lux font-bold text-primary">DINOUS</div>
-            <div class="flex flex-col text-based">
-                <h3 class="text-xl font-bold mb-4">Links</h3>
-                <div class="flex flex-col gap-3">
-                    <span>Menus</span>
-                    <span>Reservations</span>
-                    <span>Book a reservation</span>
-                </div>
-            </div>
-            <div class="flex flex-col text-based">
-                <h3 class="text-xl font-bold mb-4">Contact Us</h3>
-                <div class="flex flex-col gap-3">
-                    <span>Email</span>
-                    <span>Phone</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const burgerMenu = document.getElementById("burger-menu");
-        const menu = document.getElementById("menu");
-        burgerMenu.onclick = () => { 
-            menu.classList.toggle("-top-[300%]");
-            menu.classList.toggle("top-full");
-            burgerMenu.classList.toggle("text-primary");
-            burgerMenu.classList.toggle("text-based");
-        };
-    </script>
+    <?php include("./inc/footer.html")?>
 </body>
 </html>
