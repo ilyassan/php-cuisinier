@@ -1,4 +1,4 @@
-<?php include("./inc/header.html")?>
+<?php include("../inc/header.html")?>
 
 
 <section class="pt-10 pb-20">
@@ -143,4 +143,4 @@
     };
 </script>
 
-<?php include("./inc/footer.html")?>
+<?php include("../inc/footer.html")?>
