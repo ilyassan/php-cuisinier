@@ -12,22 +12,38 @@
     <header class="bg-secondary">
         <div class="sm:container sm:mx-auto sm:py-5 relative flex justify-between items-center">
             <div class="px-2 py-5 sm:p-0 relative bg-secondary flex justify-between flex-1 items-center z-20">
-                <span class="text-primary font-bold text-xl">DINOUS</span>
-                <span id="burger-menu" class="sm:hidden cursor-pointer text-white text-3xl"><i class="fa-solid fa-bars"></i></span>
+                <span class="text-primary font-bold text-xl font-lux">DINOUS</span>
+                <span id="burger-menu" class="sm:hidden cursor-pointer text-based text-3xl"><i class="fa-solid fa-bars"></i></span>
             </div>
-            <ul id="menu" class="flex flex-col sm:flex-row absolute sm:static bg-secondary w-full sm:w-fit left-0 z-10 top-full -top-[300%] py-4 sm:py-0 rounded-b-lg sm:rounded-none items-center sm:gap-10 font-semibold text-based transition-all duration-500">
+            <ul id="menu" class="flex flex-col sm:flex-row absolute sm:static bg-secondary w-full sm:w-fit left-0 z-10 -top-[300%] py-4 sm:py-0 rounded-b-lg sm:rounded-none items-center sm:gap-10 text-based transition-all duration-500">
                 <li class="hover:text-primary hover:border-primary transition-all duration-300 border-b border-based w-full text-center pb-5 sm:p-0 sm:border-none sm:w-fit"><a href="">Menus</a></li>
                 <li class="hover:text-primary hover:border-primary transition-all duration-300 border-b border-based w-full text-center py-5 sm:p-0 sm:border-none sm:w-fit"><a href="">Reservations</a></li>
-                <li class="hover:text-primary hover:border-primary transition-all duration-300 border-b border-based w-full text-center py-5 sm:p-0 sm:border-none sm:w-fit"><a href="">Make a reservation</a></li>
+                <li class="hover:text-primary hover:border-primary transition-all duration-300 border-b border-based w-full text-center py-5 sm:p-0 sm:border-none sm:w-fit"><a href="">Book a reservation</a></li>
                 <li class="bg-red-500 px-2 py-1 rounded-lg hover:bg-red-600 transition-all duration-300 mt-5 sm:m-0"><a href="">Logout</a></li>
             </ul>
         </div>
     </header>
 
+
+    <section class="relative">
+        <img class="max-h-[80vh] min-h-[35vh] object-cover" src="../assets/images/steak.webp" alt="Steak">
+        <div class="flex justify-center items-center absolute w-full h-full left-0 top-0 bg-secondary bg-opacity-80">
+            <div class="container flex mb-6 mx-auto flex-col gap-6 justify-center items-center">
+                <h1 class="text-primary font-lux text-4xl">DINOUS</h1>
+                <p class="text-based text-center text-lg">Chef Ilyass brings gourmet cuisine and unforgettable flavors straight to your table. With personalized menus and exceptional quality, every dish tells a story of passion, precision, and elegance.</p>
+            </div>
+        </div>
+    </section>
+
     <script>
         const burgerMenu = document.getElementById("burger-menu");
         const menu = document.getElementById("menu");
-        burgerMenu.onclick = () => { menu.classList.toggle("-top-[300%]") };
+        burgerMenu.onclick = () => { 
+            menu.classList.toggle("-top-[300%]");
+            menu.classList.toggle("top-full");
+            burgerMenu.classList.toggle("text-primary");
+            burgerMenu.classList.toggle("text-based");
+        };
     </script>
 </body>
 </html>
