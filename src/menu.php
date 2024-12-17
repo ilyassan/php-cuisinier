@@ -23,7 +23,7 @@
             </div>
 
 
-            <button class="flex mt-8 w-fit items-center gap-3 bg-secondary px-2 py-1 rounded-lg text-based">Reservate Now <i class="fa-solid fa-check-to-slot"></i></button>
+            <button class="flex mt-8 w-fit items-center gap-3 bg-secondary px-2 py-1 rounded-lg text-based">Reservate Now</button>
         </form>
     </div>
 </section>
