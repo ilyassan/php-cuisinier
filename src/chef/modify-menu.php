@@ -1,7 +1,7 @@
 <?php include("../inc/header.html")?>
 
 <section class="pt-10 pb-20">
-    <h1 class="text-3xl font-bold text-center mb-10">Create Menu</h1>
+    <h1 class="text-3xl font-bold text-center mb-10">Edit Menu</h1>
     <div class="container flex flex-col sm:flex-row justify-center gap-20 sm:gap-14">
         <div class="flex relative justify-center h-96 w-96">
             <img id="menu-image" class="border-[6px] border-secondary rounded-lg" src="../../assets/images/dishes/23808324.jpg" alt="Menu">
@@ -27,14 +27,26 @@
                                 <i id="add-dish" class="cursor-pointer fa-solid fa-plus"></i>
                             </div>
                         </div>
-                        <input id="dish1" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
+                        <input id="dish1" value="Bousfour" data-id="id" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
                         <div id="dish1-options" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
+                        </div>
+                    </div>
+                    <div class="relative flex flex-col gap-1">
+                        <label for="dish2" class="font-bold">Dish 2:</label>
+                        <input id="dish2" value="Moundor Mong" data-id="id" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
+                        <div id="dish2-options" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
+                        </div>
+                    </div>
+                    <div class="relative flex flex-col gap-1">
+                        <label for="dish3" class="font-bold">Dish 3:</label>
+                        <input id="dish3" value="Maldir nao" data-id="id" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
+                        <div id="dish3-options" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <button class="flex mt-6 w-fit items-center gap-3 bg-secondary px-2 py-1 rounded-lg text-based">Create Menu</button>
+            <button class="flex mt-6 w-fit items-center gap-3 bg-secondary px-2 py-1 rounded-lg text-based">Update Menu</button>
         </form>
     </div>
 </section>
