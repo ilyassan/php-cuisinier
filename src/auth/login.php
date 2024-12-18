@@ -1,17 +1,19 @@
-<?php include("../inc/header.html")?>
+<?php include("../inc/header.html") ?>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <div class="bg-white border-2 my-8 mx-auto rounded-lg shadow-lg p-8 w-full max-w-md">
     <h1 class="text-3xl font-bold text-center text-secondary mb-6">Welcome Back!</h1>
     <p class="text-center text-gray-500 mb-8">Log in to your account</p>
 
-    <form action="#" method="POST" class="flex flex-col gap-6">
+    <form id="login-form" action="#" method="POST" class="flex flex-col gap-6">
         <div>
             <label for="email" class="block text-sm font-semibold text-secondary mb-1">Email Address</label>
-            <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your email" required>
+            <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your email">
         </div>
         <div>
             <label for="password" class="block text-sm font-semibold text-secondary mb-1">Password</label>
-            <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your password" required>
+            <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your password">
         </div>
 
         <div class="flex items-center justify-between">
@@ -27,5 +29,30 @@
     </p>
 </div>
 
+<script>
+document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-<?php include("../inc/footer.html")?>
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!email || !password) {
+        Swal.fire("Error", "All fields are required!", "error");
+        return;
+    }
+
+    if (!emailRegex.test(email)) {
+        Swal.fire("Error", "Please enter a valid email address!", "error");
+        return;
+    }
+
+    Swal.fire("Success", "You are logged in successfully!", "success");
+    setTimeout(() => {
+        this.submit(); 
+    }, 1200);
+});
+</script>
+
+<?php include("../inc/footer.html") ?>
