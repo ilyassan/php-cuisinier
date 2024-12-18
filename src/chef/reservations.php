@@ -2,7 +2,7 @@
 
 
 <section class="pt-10 pb-20">
-    <h1 class="text-3xl font-bold text-center mb-10">Your Reservations</h1>
+    <h1 class="text-3xl font-bold text-center mb-10">Reservations</h1>
 
     <div class="container">
         <div class="text-lg mb-2">Filter:</div>
