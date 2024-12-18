@@ -1,4 +1,4 @@
-<?php include("../inc/header.html")?>
+<?php include("../inc/header.php")?>
 
 <section class="pt-10 pb-20">
     <h1 class="text-3xl font-bold text-center mb-10">Request a Reservation</h1>
@@ -86,4 +86,4 @@
         }
 </script>
 
-<?php include("../inc/footer.html")?>
+<?php include("../inc/footer.php")?>

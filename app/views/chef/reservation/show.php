@@ -1,4 +1,4 @@
-<?php include("../inc/header.html")?>
+<?php include("../inc/header.php")?>
 
 <section class="pt-10 pb-20">
     <h1 class="text-3xl font-bold text-center mb-10">Reservation Details</h1>
@@ -21,13 +21,8 @@
                     <div class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">5/12/2024</div>
                 </div>
             </div>
-
-            <div class="flex gap-5">
-                <a class="flex cursor-pointer mt-8 w-fit items-center gap-3 bg-tertiary px-2 py-1 rounded-lg text-based">Edit</a>
-                <button class="flex cursor-pointer mt-8 w-fit items-center gap-3 bg-gray-400 px-2 py-1 rounded-lg text-based">Cancel</button>
-            </div>
         </div>
     </div>
 </section>
 
-<?php include("../inc/footer.html")?>
+<?php include("../inc/footer.php")?>

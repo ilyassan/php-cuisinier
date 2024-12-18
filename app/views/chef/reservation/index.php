@@ -1,8 +1,8 @@
-<?php include("../inc/header.html")?>
+<?php include("../inc/header.php")?>
 
 
 <section class="pt-10 pb-20">
-    <h1 class="text-3xl font-bold text-center mb-10">Your Reservations</h1>
+    <h1 class="text-3xl font-bold text-center mb-10">Reservations</h1>
 
     <div class="container">
         <div class="text-lg mb-2">Filter:</div>
@@ -13,13 +13,13 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
+                        Client Name
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Menu Name
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Reservation Time
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        State
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Price
@@ -32,74 +32,54 @@
             <tbody>
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Steak RassberyPi
+                        Yasser abomouhsin
                     </th>
                     <td class="px-6 py-4">
-                        12/5/2022 At 18:00
-                    </td>
-                    <td class="px-6 py-4">
-                        <span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded-lg">Pending</span>
-                    </td>
-                    <td class="px-6 py-4">
-                        $2999
-                    </td>
-                    <td class="flex px-6 py-4">
-                        <span class="bg-tertiary text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Edit</span>
-                        <span class="bg-gray-400 text-based px-2 py-1 rounded-lg cursor-pointer">Cacel</span>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         Steak RassberyPi
-                    </th>
-                    <td class="px-6 py-4">
-                        12/5/2022 At 19:00
                     </td>
-                    <td class="px-6 py-4">
-                        <span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded-lg">Pending</span>
-                    </td>
-                    <td class="px-6 py-4">
-                        $2999
-                    </td>
-                    <td class="flex px-6 py-4">
-                        <span class="bg-tertiary text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Edit</span>
-                        <span class="bg-gray-400 text-based px-2 py-1 rounded-lg cursor-pointer">Cacel</span>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Steak RassberyPi
-                    </th>
-                    <td class="px-6 py-4">
-                        12/5/2023 At 18:00
-                    </td>
-                    <td class="px-6 py-4">
-                        <span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded-lg">Pending</span>
-                    </td>
-                    <td class="px-6 py-4">
-                        $2999
-                    </td>
-                    <td class="flex px-6 py-4">
-                        <span class="bg-tertiary text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Edit</span>
-                        <span class="bg-gray-400 text-based px-2 py-1 rounded-lg cursor-pointer">Cacel</span>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Steak RassberyPi
-                    </th>
                     <td class="px-6 py-4">
                         2/5/2022 At 18:00
                     </td>
                     <td class="px-6 py-4">
-                        <span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded-lg">Pending</span>
+                        $2999
+                    </td>
+                    <td class="flex px-6 py-4">
+                        <span class="bg-green-600 text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Accept</span>
+                        <span class="bg-red-200 text-red-700 px-2 py-1 rounded-lg cursor-pointer">Refuse</span>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Yasser abomouhsin
+                    </th>
+                    <td class="px-6 py-4">
+                        Steak RassberyPi
+                    </td>
+                    <td class="px-6 py-4">
+                        2/5/2022 At 18:00
                     </td>
                     <td class="px-6 py-4">
                         $2999
                     </td>
                     <td class="flex px-6 py-4">
-                        <span class="bg-tertiary text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Edit</span>
-                        <span class="bg-gray-400 text-based px-2 py-1 rounded-lg cursor-pointer">Cacel</span>
+                        <span class="bg-green-200 text-green-600 px-2 py-1 rounded-lg cursor-pointer mr-5">Confirmed <i class="fa-regular fa-circle-check"></i></span>
+                    </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Yasser abomouhsin
+                    </th>
+                    <td class="px-6 py-4">
+                        Steak RassberyPi
+                    </td>
+                    <td class="px-6 py-4">
+                        2/5/2022 At 18:00
+                    </td>
+                    <td class="px-6 py-4">
+                        $2999
+                    </td>
+                    <td class="flex px-6 py-4">
+                        <span class="bg-red-200 text-red-700 px-2 py-1 rounded-lg cursor-pointer">Refused <i class="fa-regular fa-x"></i></span>
                     </td>
                 </tr>
             </tbody>
@@ -143,4 +123,4 @@
     };
 </script>
 
-<?php include("../inc/footer.html")?>
+<?php include("../inc/footer.php")?>

@@ -1,4 +1,4 @@
-<?php include("../inc/header.html")?>
+<?php include("../inc/header.php")?>
 
 <section class="relative">
     <img class="max-h-[80vh] min-h-[35vh] object-cover w-full" src="../../assets/images/steak.webp" alt="Steak">
@@ -85,4 +85,4 @@
     <button class="block w-fit mt-10 mx-auto bg-tertiary px-4 py-1 text-based rounded-lg">Create New Menu <i class="fa-regular fa-plus"></i></button>
 </section>
 
-<?php include("../inc/footer.html")?>
+<?php include("../inc/footer.php")?>

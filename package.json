@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "tail": "npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+    "tail": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.16"
