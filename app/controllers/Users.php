@@ -1,5 +1,8 @@
 <?php
     class Users extends Controller {
+
+        private $userModel;
+
         public function __construct(){
             if (isLoggedIn()) {
                 redirect("menus");
