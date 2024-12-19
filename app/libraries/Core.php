@@ -5,7 +5,7 @@
      */
     
     class Core {
-        protected $currentController = 'Pages';
+        protected $currentController = 'Users';
         protected $currentMethod = 'index';
         protected $params = [];
         
@@ -29,7 +29,6 @@
 
             // Instantiate controller class
             $this->currentController = new $this->currentController;
-
             
             // Check for second part of url
             if(isset($url[1])){

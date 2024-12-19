@@ -1,7 +1,5 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  <!-- If there is not directory, then rewrite to public -->
   RewriteRule  ^$ public/ [L]
-  <!-- If there is not directory, then rewrite the base to public -->
   RewriteRule  (.*) public/$1 [L]
 </IfModule>

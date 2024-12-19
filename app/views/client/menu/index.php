@@ -1,4 +1,4 @@
-    <?php include("../inc/header.php")?>
+    <?php include(APPROOT . '/views/inc/header.php')?>
 
     <section class="relative">
         <img class="max-h-[80vh] min-h-[35vh] object-cover w-full" src="../../assets/images/steak.webp" alt="Steak">
@@ -81,4 +81,4 @@
         </div>
     </section>
 
-    <?php include("../inc/footer.php")?>
+    <?php include(APPROOT . '/views/inc/footer.php')?>
