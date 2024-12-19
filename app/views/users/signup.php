@@ -79,11 +79,6 @@
             Swal.fire("Error", "Passwords do not match!", "error");
             return;
         }
-
-        Swal.fire("Success", "Your account has been created successfully!", "success");
-        setTimeout(() => {
-            this.submit();
-        }, 1200);
     });
 </script>
 

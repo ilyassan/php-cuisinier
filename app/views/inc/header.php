@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= SITENAME ?></title>
-    <link rel="stylesheet" href="<?= URLROOT ?>/css/all.min.css">
-    <link rel="stylesheet" href="<?= URLROOT ?>/css/fontawesome.min.css">
-    <link rel="stylesheet" href="<?= URLROOT ?>/css/output.css">
+    <link rel="stylesheet" href=<?= URLROOT . '/css/all.min.css'?>>
+    <link rel="stylesheet" href=<?= URLROOT . '/css/fontawesome.min.css'?>>
+    <link rel="stylesheet" href=<?= URLROOT . '/css/output.css'?>>
 </head>
 <body>
 <header class="bg-secondary">

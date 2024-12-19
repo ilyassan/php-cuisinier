@@ -8,6 +8,8 @@
         }
 
         public function index() {
-            $this->view("menu/index");
+            $menus = $this->menuModel->getAll();
+
+            $this->view("menu/index", $menus);
         }
     }

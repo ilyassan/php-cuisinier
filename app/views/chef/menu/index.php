@@ -15,71 +15,21 @@
     <div class="container flex justify-end">
         <button class="block w-fit mb-6 bg-tertiary px-4 py-1 text-based rounded-lg">Create New Menu <i class="fa-regular fa-plus"></i></button>
     </div>
-    <div class="container grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-4 place-items-center">
-        <div class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
-            <img class="border-tertiary rounded-xl" src="../../assets/images/dishes/23808324.jpg" alt="Dish">
-            <p class="text-2xl text-center mb-1 mt-2.5 font-bold text-based">Steak Brery</p>
-            <div class="flex text-2xl lg:text-xl justify-between">
-                <span class="text-based">149$</span>
-                <span class="text-primary cursor-pointer"><i class="fa-solid fa-check-to-slot"></i></span>
+    <div class="container grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 gap-y-4 place-items-center">
+        <?php
+                foreach ($data as $menu) {
+            ?>
+            <div class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
+                <img class="border-tertiary rounded-xl" src="../../assets/images/dishes/23808324.jpg" alt="Dish">
+                <p class="text-2xl text-center mb-1 mt-2.5 font-bold text-based"><?= $menu["name"]?></p>
+                <div class="flex text-2xl lg:text-xl justify-between">
+                    <span class="text-based"><?= $menu["price"]?>$</span>
+                    <span class="text-primary cursor-pointer"><i class="fa-solid fa-check-to-slot"></i></span>
+                </div>
             </div>
-        </div>
-        <div class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
-            <img class="border-tertiary rounded-xl" src="../../assets/images/dishes/23808324.jpg" alt="Dish">
-            <p class="text-2xl text-center mb-1 mt-2.5 font-bold text-based">Steak Brery</p>
-            <div class="flex text-2xl lg:text-xl justify-between">
-                <span class="text-based">149$</span>
-                <span class="text-primary cursor-pointer"><i class="fa-solid fa-check-to-slot"></i></span>
-            </div>
-        </div>
-        <div class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
-            <img class="border-tertiary rounded-xl" src="../../assets/images/dishes/23808324.jpg" alt="Dish">
-            <p class="text-2xl text-center mb-1 mt-2.5 font-bold text-based">Steak Brery</p>
-            <div class="flex text-2xl lg:text-xl justify-between">
-                <span class="text-based">149$</span>
-                <span class="text-primary cursor-pointer"><i class="fa-solid fa-check-to-slot"></i></span>
-            </div>
-        </div>
-        <div class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
-            <img class="border-tertiary rounded-xl" src="../../assets/images/dishes/23808324.jpg" alt="Dish">
-            <p class="text-2xl text-center mb-1 mt-2.5 font-bold text-based">Steak Brery</p>
-            <div class="flex text-2xl lg:text-xl justify-between">
-                <span class="text-based">149$</span>
-                <span class="text-primary cursor-pointer"><i class="fa-solid fa-check-to-slot"></i></span>
-            </div>
-        </div>
-        <div class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
-            <img class="border-tertiary rounded-xl" src="../../assets/images/dishes/23808324.jpg" alt="Dish">
-            <p class="text-2xl text-center mb-1 mt-2.5 font-bold text-based">Steak Brery</p>
-            <div class="flex text-2xl lg:text-xl justify-between">
-                <span class="text-based">149$</span>
-                <span class="text-primary cursor-pointer"><i class="fa-solid fa-check-to-slot"></i></span>
-            </div>
-        </div>
-        <div class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
-            <img class="border-tertiary rounded-xl" src="../../assets/images/dishes/23808324.jpg" alt="Dish">
-            <p class="text-2xl text-center mb-1 mt-2.5 font-bold text-based">Steak Brery</p>
-            <div class="flex text-2xl lg:text-xl justify-between">
-                <span class="text-based">149$</span>
-                <span class="text-primary cursor-pointer"><i class="fa-solid fa-check-to-slot"></i></span>
-            </div>
-        </div>
-        <div class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
-            <img class="border-tertiary rounded-xl" src="../../assets/images/dishes/23808324.jpg" alt="Dish">
-            <p class="text-2xl text-center mb-1 mt-2.5 font-bold text-based">Steak Brery</p>
-            <div class="flex text-2xl lg:text-xl justify-between">
-                <span class="text-based">149$</span>
-                <span class="text-primary cursor-pointer"><i class="fa-solid fa-check-to-slot"></i></span>
-            </div>
-        </div>
-        <div class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
-            <img class="border-tertiary rounded-xl" src="../../assets/images/dishes/23808324.jpg" alt="Dish">
-            <p class="text-2xl text-center mb-1 mt-2.5 font-bold text-based">Steak Brery</p>
-            <div class="flex text-2xl lg:text-xl justify-between">
-                <span class="text-based">149$</span>
-                <span class="text-primary cursor-pointer"><i class="fa-solid fa-check-to-slot"></i></span>
-            </div>
-        </div>
+        <?php
+                }
+            ?>
     </div>
 
     <button class="block w-fit mt-10 mx-auto bg-tertiary px-4 py-1 text-based rounded-lg">Create New Menu <i class="fa-regular fa-plus"></i></button>
