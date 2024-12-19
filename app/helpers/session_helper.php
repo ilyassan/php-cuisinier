@@ -2,22 +2,18 @@
     session_start();
 
     // Flash message helper
-    function flash($name = '', $message = '', $class = 'alert alert-success'){
+    function flash($name = '', $message = ''){
         if(!empty($name)){
 
             if(!empty($message) && empty($_SESSION[$name])){
-
                 $_SESSION[$name] = $message;
-                $_SESSION[$name. '_class'] = $class;
 
             }elseif(empty($message) && !empty($_SESSION[$name])){
 
-                $class = !empty($_SESSION[$name. '_class']) ? $_SESSION[$name. '_class'] : '';
                 $message = $_SESSION[$name];
                 unset($_SESSION[$name]);
-                unset($_SESSION[$name. '_class']);
                 
-                return "<div class='$class' id='msg-flash'>$message</div>";
+                return $message;
             }
 
         }
