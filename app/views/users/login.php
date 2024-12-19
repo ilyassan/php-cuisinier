@@ -59,4 +59,15 @@
     }
 </script>
 
+<script>
+    let errors = <?= isset($data) ? json_encode($data) : '[]'; ?>;
+
+    for(let errorMessage of Object.values(errors)){
+        if (errorMessage != "") {
+            Swal.fire("Error", errorMessage, "error");
+            break;
+        }
+    }
+</script>
+
 <?php include(APPROOT . '/views/inc/footer.php') ?>
