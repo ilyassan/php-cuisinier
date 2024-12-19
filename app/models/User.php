@@ -1,6 +1,8 @@
 <?php
     class User {
         private $db;
+        public static $clientRoleId = 1;
+        public static $admineRoleId = 2;
 
         public function __construct(){
             $this->db = new Database;
@@ -8,29 +10,13 @@
 
         // Register user
         public function register($data){
-            $this->db->query("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
+            $this->db->query("INSERT INTO users (first_name, last_name, email, password_hash, role_id) VALUES (?, ?, ?, ?, ?)");
             // Bind values
-            $this->db->bind('ssi', $data['name'], $data['email'], $data['password']); // "s" indicates string
+            $this->db->bind('ssssi', $data['first_name'], $data['last_name'], $data['email'], $data['password'], self::$clientRoleId);
 
             // Execute
             if($this->db->execute()){
                 return true;
-            }
-            return false;
-        }
-
-        // Login user
-        public function login($email, $password){
-            $this->db->query("SELECT * FROM users WHERE email = ?");
-            $this->db->bind('s', $email);
-
-            $row = $this->db->single();
-
-            if ($row) {
-                $hashed_password = $row->password;
-                if (password_verify($password, $hashed_password)) {
-                    return $row;
-                }
             }
             return false;
         }

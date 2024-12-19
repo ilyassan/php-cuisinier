@@ -66,9 +66,14 @@
 
                 // Make sure errors are empty (There's no errors)
                 if(empty($errors['firstname_err']) && empty($errors['lastname_err']) && empty($errors['email_err']) && empty($errors['password_err']) && empty($errors['confirm_password_err'])){
-                    // signup user
+                    // Hash Password
+                    $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                    // Register user
                     if($this->userModel->register($data)){
-                        redirect("users/login");
+                        // Register success
+                        flash('register_success', 'You are registered and can log in');
+                        redirect('users/login');
                     }else{
                         die('Something went wrong');
                     }
