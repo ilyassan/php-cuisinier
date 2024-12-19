@@ -98,6 +98,18 @@
                     'password_err' => '',
                 ];
 
+                // Validate Email
+                if(empty($data['email'])){
+                    $data['email_err'] = 'Please enter your email.';
+                }elseif(!$this->userModel->findUserByEmail($data['email'])){
+                    // if user not found
+                    $data['email_err'] = 'No user found.';
+                }
+
+                // Validate Password
+                if(empty($data['password'])){
+                    $data['password_err'] = 'Please enter your password.';
+                }
             }
             else {
                 $this->view('/users/login');
