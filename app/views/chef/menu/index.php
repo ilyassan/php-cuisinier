@@ -19,14 +19,14 @@
         <?php
                 foreach ($data as $menu) {
             ?>
-            <div class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
+            <a href=<?= URLROOT . '/menus/show/' . $menu["id"] ?> class="bg-tertiary rounded-lg pb-3 px-2 pt-2 max-w-80">
                 <img class="border-tertiary rounded-xl" src="../../assets/images/dishes/23808324.jpg" alt="Dish">
                 <p class="text-2xl text-center mb-1 mt-2.5 font-bold text-based"><?= $menu["name"]?></p>
                 <div class="flex text-2xl lg:text-xl justify-between">
                     <span class="text-based"><?= $menu["price"]?>$</span>
                     <span class="text-primary cursor-pointer"><i class="fa-solid fa-check-to-slot"></i></span>
                 </div>
-            </div>
+            </a>
         <?php
                 }
             ?>
