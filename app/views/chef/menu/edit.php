@@ -1,4 +1,4 @@
-<?php include("../inc/header.php")?>
+<?php include(APPROOT . '/views/inc/header.php')?>
 
 <section class="pt-10 pb-20">
     <h1 class="text-3xl font-bold text-center mb-10">Edit Menu</h1>
@@ -156,4 +156,4 @@
     }
 </script>
 
-<?php include("../inc/footer.php")?>
+<?php include(APPROOT . '/views/inc/footer.php')?>

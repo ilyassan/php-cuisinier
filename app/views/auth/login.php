@@ -1,4 +1,4 @@
-<?php include("../inc/header.html") ?>
+<?php include(APPROOT . '/views/inc/header.php') ?>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -25,7 +25,7 @@
 
     <p class="text-center text-sm text-gray-500 mt-6">
         Don’t have an account?
-        <a href="#" class="text-primary hover:underline">Sign Up</a>
+        <a href=<?= URLROOT . '/auth/signup' ?> class="text-primary hover:underline">Sign Up</a>
     </p>
 </div>
 
@@ -55,4 +55,4 @@ document.getElementById("login-form").addEventListener("submit", function(event)
 });
 </script>
 
-<?php include("../inc/footer.html") ?>
+<?php include(APPROOT . '/views/inc/footer.php') ?>

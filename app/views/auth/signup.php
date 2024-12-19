@@ -1,4 +1,4 @@
-<?php include("../inc/header.html") ?>
+<?php include(APPROOT . '/views/inc/header.php') ?>
 
 <div class="bg-white border-2 my-8 mx-auto rounded-lg shadow-lg p-8 w-full max-w-md">
     <h1 class="text-3xl font-bold text-center text-secondary mb-6">Create an Account</h1>
@@ -36,7 +36,7 @@
 
     <p class="text-center text-sm text-gray-500 mt-6">
         Already have an account?
-        <a href="#" class="text-primary hover:underline">Sign In</a>
+        <a href=<?= URLROOT . '/auth/login' ?> class="text-primary hover:underline">Log In</a>
     </p>
 </div>
 
@@ -87,4 +87,4 @@ document.getElementById("signup-form").addEventListener("submit", function(event
 });
 </script>
 
-<?php include("../inc/footer.html") ?>
+<?php include(APPROOT . '/views/inc/footer.php') ?>
