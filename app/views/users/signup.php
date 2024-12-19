@@ -43,7 +43,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.getElementById("signup-form").addEventListener("submit", function(event) {
-        return;
         event.preventDefault();
 
         const firstName = document.getElementById("firstname").value.trim();

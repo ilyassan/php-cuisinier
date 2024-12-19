@@ -29,7 +29,7 @@ class Database {
     public function query($sql){
         $this->stmt = $this->dbh->prepare($sql);
         if (!$this->stmt) {
-            die("Query error: " . $this->dbh->error);
+            die("Query preparation error: " . $this->dbh->error . "\nSQL: " . $sql);
         }
     }
 
