@@ -93,22 +93,42 @@
 
                 $data = [
                     'email' => trim($_POST['email']),
-                    'password' => trim($_POST['password']),
+                    'password' => trim($_POST['password'])
+                ];
+                $errors = [
                     'email_err' => '',
-                    'password_err' => '',
+                    'password_err' => ''
                 ];
 
                 // Validate Email
                 if(empty($data['email'])){
-                    $data['email_err'] = 'Please enter your email.';
+                    $errors['email_err'] = 'Please enter your email.';
                 }elseif(!$this->userModel->findUserByEmail($data['email'])){
                     // if user not found
-                    $data['email_err'] = 'No user found.';
+                    $errors['email_err'] = 'No user found.';
                 }
 
                 // Validate Password
                 if(empty($data['password'])){
-                    $data['password_err'] = 'Please enter your password.';
+                    $errors['password_err'] = 'Please enter your password.';
+                }
+
+
+                // Make sure errors are empty (There's no errors)
+                if(empty($errors['email_err']) && empty($errors['password_err'])){
+                    // Validated
+                    // Check and set logged in user
+                    $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+                    if($loggedInUser){
+                        echo "loggedin";
+                    }else{
+                        $errors['password_err'] = 'Password incorrect.';
+                        $this->view("/users/login", $errors);
+                    }
+                }else{
+                    // Load view with errors
+                    $this->view("/users/login", $errors);
                 }
             }
             else {

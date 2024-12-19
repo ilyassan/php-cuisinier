@@ -21,6 +21,21 @@
             return false;
         }
 
+        // Verify if using exist
+        public function login($email, $password) {
+            $this->db->query("SELECT * FROM users WHERE email = ?");
+            // Bind values
+            $this->db->bind('s', $email);
+
+            $user = $this->db->single();
+            $hashed_password = $user->password_hash;
+            
+            if(password_verify($password, $hashed_password)){
+                return $user;
+            }
+            return false;
+        }
+
         // Find user by email
         public function findUserByEmail($email){
             $this->db->query("SELECT * FROM users WHERE email = ?");
