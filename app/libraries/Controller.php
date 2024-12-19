@@ -15,6 +15,10 @@
         // Load view
         public function view($view, $data = []){
             // Check for view file
+            if (isLoggedIn()) {
+                $view = user()->getRole(). "/" . $view;
+            }
+            
             if(file_exists('../app/views/' . $view . '.php')){
                 require_once '../app/views/' . $view . '.php';
             }else{

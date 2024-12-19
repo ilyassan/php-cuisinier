@@ -1,8 +1,6 @@
 <?php
     class User {
         private $db;
-        public static $clientRoleId = 1;
-        public static $admineRoleId = 2;
 
         public function __construct(){
             $this->db = new Database;
@@ -46,5 +44,16 @@
 
             // Check row 
             return $row ? true : false;
+        }
+
+        // Get user by id
+        public function getUserById($id) {
+            $this->db->query("SELECT * FROM users WHERE id = ?");
+            // Bind values
+            $this->db->bind('i', $id);
+
+            $user = $this->db->single();
+
+            return $user;
         }
     }

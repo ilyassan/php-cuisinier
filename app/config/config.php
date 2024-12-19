@@ -6,7 +6,6 @@
     define('DB_NAME', 'cuisine');
 
     define('APPROOT', dirname(dirname(__FILE__)));
-
     define('URLROOT', 'http://localhost/php-cuisinier');
 
     define('SITENAME', 'ChefCuisine');
