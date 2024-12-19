@@ -12,76 +12,55 @@ class Database {
     private $pass = DB_PASS;
     private $dbname = DB_NAME;
 
-    private $mysqli;
+    private $dbh;
     private $stmt;
     private $error;
 
     public function __construct(){
-        // Create MySQLi connection
-        $this->mysqli = new mysqli($this->host, $this->user, $this->pass, $this->dbname);
+        // Create database connection
+        $this->dbh = new mysqli($this->host, $this->user, $this->pass, $this->dbname);
 
-        // Check connection
-        if($this->mysqli->connect_error){
-            $this->error = $this->mysqli->connect_error;
-            echo $this->error;
+        if ($this->dbh->connect_error) {
+            die("Connection failed: " . $this->dbh->connect_error);
         }
     }
 
-    // Prepare statement with query
+    // Prepare query
     public function query($sql){
-        $this->stmt = $this->mysqli->prepare($sql);
-        if($this->stmt === false){
-            $this->error = $this->mysqli->error;
-            echo $this->error;
+        $this->stmt = $this->dbh->prepare($sql);
+        if (!$this->stmt) {
+            die("Query error: " . $this->dbh->error);
         }
     }
 
-    // Bind values
-    public function bind($param, $value, $type = null){
-        if(is_null($type)){
-            switch(true){
-                case is_int($value):
-                    $type = 'i'; // Integer
-                    break;
-                case is_double($value):
-                    $type = 'd'; // Double
-                    break;
-                case is_string($value):
-                    $type = 's'; // String
-                    break;
-                case is_null($value):
-                    $type = 's'; // String (to handle nulls as well)
-                    break;
-            }
-        }
-
-        // Bind parameters
-        $this->stmt->bind_param($type, $value);
+    // Bind values dynamically
+    public function bind($types, ...$values){
+        $this->stmt->bind_param($types, ...$values);
     }
 
-    // Execute the prepared statement
+    // Execute statement
     public function execute(){
         return $this->stmt->execute();
     }
 
-    // Get result set as array of objects
+    // Fetch single result
+    public function single(){
+        $this->stmt->execute();
+        $result = $this->stmt->get_result();
+        return $result->fetch_object();
+    }
+
+    // Fetch multiple results
     public function resultSet(){
-        $this->execute();
+        $this->stmt->execute();
         $result = $this->stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    // Get single record as an object
-    public function single(){
-        $this->execute();
-        $result = $this->stmt->get_result();
-        return $result->fetch_assoc();
-    }
-
     // Get row count
     public function rowCount(){
-        $result = $this->stmt->get_result();
-        return $result->num_rows;
+        $this->stmt->store_result();
+        return $this->stmt->num_rows;
     }
 }
 ?>
