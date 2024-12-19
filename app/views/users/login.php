@@ -6,14 +6,14 @@
     <h1 class="text-3xl font-bold text-center text-secondary mb-6">Welcome Back!</h1>
     <p class="text-center text-gray-500 mb-8">Log in to your account</p>
 
-    <form id="login-form" action="#" method="POST" class="flex flex-col gap-6">
+    <form id="login-form" action=<?= URLROOT . '/users/login'?> method="POST" class="flex flex-col gap-6">
         <div>
             <label for="email" class="block text-sm font-semibold text-secondary mb-1">Email Address</label>
-            <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your email">
+            <input autocomplete="off" type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your email">
         </div>
         <div>
             <label for="password" class="block text-sm font-semibold text-secondary mb-1">Password</label>
-            <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your password">
+            <input autocomplete="off" type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your password">
         </div>
 
         <div class="flex items-center justify-between">
@@ -25,34 +25,38 @@
 
     <p class="text-center text-sm text-gray-500 mt-6">
         Don’t have an account?
-        <a href=<?= URLROOT . '/auth/signup' ?> class="text-primary hover:underline">Sign Up</a>
+        <a href=<?= URLROOT . '/users/signup' ?> class="text-primary hover:underline">Sign Up</a>
     </p>
 </div>
 
 <script>
-document.getElementById("login-form").addEventListener("submit", function(event) {
-    event.preventDefault();
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!email || !password) {
-        Swal.fire("Error", "All fields are required!", "error");
-        return;
-    }
+        if (!email || !password) {
+            Swal.fire("Error", "All fields are required!", "error");
+            return;
+        }
 
-    if (!emailRegex.test(email)) {
-        Swal.fire("Error", "Please enter a valid email address!", "error");
-        return;
-    }
+        if (!emailRegex.test(email)) {
+            Swal.fire("Error", "Please enter a valid email address!", "error");
+            return;
+        }
 
-    Swal.fire("Success", "You are logged in successfully!", "success");
-    setTimeout(() => {
         this.submit(); 
-    }, 1200);
-});
+    });
+</script>
+
+<script>
+    let isSuccesRegistered = <?= json_encode(flash("register_success")); ?>;
+    if (isSuccesRegistered) {
+        Swal.fire("Success", isSuccesRegistered, "success");
+    }
 </script>
 
 <?php include(APPROOT . '/views/inc/footer.php') ?>

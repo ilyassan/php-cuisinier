@@ -12,12 +12,10 @@
         }
 
         public function signup(){
-            // Check if Post
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 // Sanitize POST data
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-                // Init data
                 $data = [
                     'first_name' => trim($_POST['firstname']),
                     'last_name' => trim($_POST['lastname']),
@@ -85,6 +83,24 @@
             }
             else {
                 $this->view('/users/signup');
+            }
+        }
+
+        public function login(){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'email' => trim($_POST['email']),
+                    'password' => trim($_POST['password']),
+                    'email_err' => '',
+                    'password_err' => '',
+                ];
+
+            }
+            else {
+                $this->view('/users/login');
             }
         }
     }
