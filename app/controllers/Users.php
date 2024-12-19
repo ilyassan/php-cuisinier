@@ -2,7 +2,7 @@
     class Users extends Controller {
         public function __construct(){
             if (isLoggedIn()) {
-                redirect("/");
+                redirect("menus");
             }
            $this->userModel = $this->model('User'); 
         }
@@ -82,7 +82,7 @@
                 }
             }
             else {
-                $this->view('/users/signup');
+                $this->view('users/signup');
             }
         }
 
@@ -121,18 +121,23 @@
                     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
 
                     if($loggedInUser){
-                        echo "loggedin";
+                        $this->createUserSession($loggedInUser);
                     }else{
                         $errors['password_err'] = 'Password incorrect.';
-                        $this->view("/users/login", $errors);
+                        $this->view("users/login", $errors);
                     }
                 }else{
                     // Load view with errors
-                    $this->view("/users/login", $errors);
+                    $this->view("users/login", $errors);
                 }
             }
             else {
-                $this->view('/users/login');
+                $this->view('users/login');
             }
+        }
+
+        public function createUserSession($user){
+            $_SESSION['user_id'] = $user->id;
+            redirect('/');
         }
     }
