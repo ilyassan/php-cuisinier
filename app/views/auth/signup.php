@@ -4,7 +4,7 @@
     <h1 class="text-3xl font-bold text-center text-secondary mb-6">Create an Account</h1>
     <p class="text-center text-gray-500 mb-8">Sign up to get started</p>
 
-    <form id="signup-form" action="#" method="POST" class="flex flex-col gap-6">
+    <form id="signup-form" action=<?= URLROOT . '/users/register'?> method="POST" class="flex flex-col gap-6">
 
         <div>
             <label for="firstname" class="block text-sm font-semibold text-secondary mb-1">First Name</label>
@@ -43,6 +43,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.getElementById("signup-form").addEventListener("submit", function(event) {
+    return;
     event.preventDefault();
 
     const firstName = document.getElementById("firstname").value.trim();
