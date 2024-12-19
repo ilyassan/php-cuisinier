@@ -80,9 +80,11 @@ function user() {
                 $userData->role_id
             );
             return $cachedUser;
+        }else {
+            unset($_SESSION["user_id"]);
+            redirect("users/login");
         }
     }
 
     return null; // Return null if no user is logged in
 }
-

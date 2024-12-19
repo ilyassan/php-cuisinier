@@ -51,7 +51,7 @@ class Database {
     }
 
     // Fetch multiple results
-    public function resultSet(){
+    public function results(){
         $this->stmt->execute();
         $result = $this->stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);

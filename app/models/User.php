@@ -1,6 +1,8 @@
 <?php
     class User {
         private $db;
+        public static $clientRoleId = 1;
+        public static $admineRoleId = 2;
 
         public function __construct(){
             $this->db = new Database;

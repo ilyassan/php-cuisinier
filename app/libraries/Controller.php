@@ -15,7 +15,7 @@
         // Load view
         public function view($view, $data = []){
             // Check for view file
-            if (isLoggedIn()) {
+            if (user() && isLoggedIn()) {
                 $view = user()->getRole(). "/" . $view;
             }
             
