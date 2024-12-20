@@ -30,4 +30,22 @@
 
             return $reservations;
         }
+
+        public function getReservationsOfUser($userId) {
+            $this->db->query(
+                "SELECT
+                    reservations.*,
+                    menus.name as menu_name,
+                    menus.price as price
+                FROM reservations
+                JOIN menus ON reservations.menu_id = menus.id
+                WHERE reservations.client_id = ?"
+            );
+
+            $this->db->bind('i', $userId);
+
+            $reservations = $this->db->results();
+
+            return $reservations;
+        }
     }

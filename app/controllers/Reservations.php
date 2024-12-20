@@ -11,8 +11,14 @@
         }
 
         public function index() {
-            $reservations = $this->reservationModel->getAllWithMenuAndClient();
+            if (user()->isChef()) {
+                $reservations = $this->reservationModel->getAllWithMenuAndClient();
 
-            $this->view("reservation/index", $reservations);
+                $this->view("reservation/index", $reservations);
+            }elseif (user()->isClient()){
+                $reservations = $this->reservationModel->getReservationsOfUser(user()->getId());
+                
+                $this->view("reservation/index", $reservations);
+            }
         }
     }

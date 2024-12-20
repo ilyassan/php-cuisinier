@@ -38,11 +38,11 @@ class AuthenticatedUser {
     }
 
     public function getRole() {
-        return $this->isAdmin() ? "chef": "client";
+        return $this->isChef() ? "chef": "client";
     }
 
     // Role checks
-    public function isAdmin() {
+    public function isChef() {
         return $this->role === self::$admineRoleId;
     }
 
