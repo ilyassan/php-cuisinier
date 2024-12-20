@@ -30,7 +30,7 @@
 
 
             <div class="flex gap-5">
-                <a href=<?= URLROOT . '/menus/edit'?> class="flex mt-8 w-fit items-center gap-3 bg-tertiary px-2 py-1 rounded-lg text-based">Edit</a>
+                <a href=<?= URLROOT . '/menus/edit/'. $menu["id"]?> class="flex mt-8 w-fit items-center gap-3 bg-tertiary px-2 py-1 rounded-lg text-based">Edit</a>
                 <button formaction=<?= URLROOT . '/menus/delete'?> class="flex mt-8 w-fit items-center gap-3 bg-red-400 text-red-800 px-2 py-1 rounded-lg">Delete</button>
                 <input type="hidden" name="menu_id" value=<?=$menu["id"]?>>
             </div>

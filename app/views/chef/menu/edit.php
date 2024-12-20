@@ -1,5 +1,9 @@
-<?php include(APPROOT . '/views/inc/header.php')?>
-
+<?php
+    include(APPROOT . '/views/inc/header.php');
+    $menu = $data["menu"];
+    $menuDishes = $data["dishes"];
+    $dishes = $data["all_dishes"];
+?>
 <section class="pt-10 pb-20">
     <h1 class="text-3xl font-bold text-center mb-10">Edit Menu</h1>
     <div class="container flex flex-col sm:flex-row justify-center gap-20 sm:gap-14">
@@ -8,42 +12,45 @@
             <label for="image" class="cursor-pointer border-[6px] border-secondary rounded-lg absolute w-full h-full bg-[#eee] text-gray-500 flex justify-center items-center">Upload an Image</label>
             <input type="file" id="image" class="hidden" accept="image/gif, image/jpeg, image/png">
         </div>
-        <form action="" class="sm:w-1/2">
+        <form id="menu-form" method="POST" action=<?= URLROOT . '/menus/edit/'. $menu["id"]?> class="sm:w-1/2">
             <div class="flex flex-col gap-3">
                 <div class="flex flex-col gap-1">
                     <label for="name" class="font-bold">Menu Name:</label>
-                    <input id="name" type="text" placeholder="Enter the menu name" name="name" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
+                    <input id="name" value=<?=$menu["name"]?> type="text" placeholder="Enter the menu name" name="name" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="price" class="font-bold">Price:</label>
-                    <input min="0" id="price" type="number" value="Dessert , Chocolate Mousse, Fresh Fruit" placeholder="Enter the menu price" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
+                    <input min="0" name="price" step="0.01" value=<?=$menu["price"]?> id="price" type="number" value="Dessert , Chocolate Mousse, Fresh Fruit" placeholder="Enter the menu price" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
                 </div>
                 <div id="dishes" class="flex flex-col gap-3">
                     <div class="relative flex flex-col gap-1">
-                        <div class="flex justify-between">
-                            <label for="dish1" class="font-bold">Dish 1:</label>
-                            <div class="flex gap-5 text-tertiary text-2xl">
-                                <i id="remove-dish" class="cursor-pointer fa-solid fa-minus"></i>
-                                <i id="add-dish" class="cursor-pointer fa-solid fa-plus"></i>
+                            <div class="flex justify-between">
+                                <label for="dish1" class="font-bold">Dish 1:</label>
+                                <div class="flex gap-5 text-tertiary text-2xl">
+                                    <i id="remove-dish" class="cursor-pointer fa-solid fa-minus"></i>
+                                    <i id="add-dish" class="cursor-pointer fa-solid fa-plus"></i>
+                                </div>
+                            </div>
+                            <input id="dish1" value=<?=$dishes[0]["name"]?> data-id=<?=$dishes[0]["id"]?> class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
+                            <input type="hidden" id="dish1-id" name="dish1" value=<?=$dishes[0]["id"]?>>
+                            <div id="dish1-options" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
+                            </div>
+                    </div>
+                    <?php
+                    foreach($menuDishes as $i => $dish){
+                        if($i != 0){
+                    ?>
+                        <div class="relative flex flex-col gap-1">
+                            <label for=<?="dish". ($i + 1)?> class="font-bold">Dish <?=$i + 1?>:</label>
+                            <input id=<?="dish". ($i + 1)?> value=<?=$dish["name"]?> data-id=<?=$dish["id"]?> class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
+                            <input type="hidden" id=<?="dish". ($i + 1) . "-id"?> name=<?="dish". ($i + 1)?> value=<?=$dish["id"]?>>
+                            <div id=<?="dish". ($i + 1). "-options"?> class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
                             </div>
                         </div>
-                        <input id="dish1" value="Bousfour" data-id="id" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
-                        <div id="dish1-options" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
-                        </div>
-                    </div>
-                    <div class="relative flex flex-col gap-1">
-                        <label for="dish2" class="font-bold">Dish 2:</label>
-                        <input id="dish2" value="Moundor Mong" data-id="id" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
-                        <div id="dish2-options" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
-                        </div>
-                    </div>
-                    <div class="relative flex flex-col gap-1">
-                        <label for="dish3" class="font-bold">Dish 3:</label>
-                        <input id="dish3" value="Maldir nao" data-id="id" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
-                        <div id="dish3-options" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
-                        </div>
-                    </div>
-                </div>
+                    <?php
+                        }
+                    }
+                    ?>
             </div>
 
             <button class="flex mt-6 w-fit items-center gap-3 bg-secondary px-2 py-1 rounded-lg text-based">Update Menu</button>
@@ -69,15 +76,17 @@
         }
     };
 
-    const dishes = ["Steak RassberyPi", "Bousfour Mongoul", "Akiran Jiran", "Lmhamid weneed"];
-    const dishesElementsContainer = document.getElementById("dishes");
+    const dishes = <?= json_encode($dishes) ?>;
 
+    const dishesElementsContainer = document.getElementById("dishes");
+    
     for (let element of dishesElementsContainer.children) {
         inputEvents(element.querySelector("input").id);
     }
 
     function inputEvents(inputId) {
         const dishInput = document.getElementById(inputId);
+        const dishIdInput = document.getElementById(`${inputId}-id`);
         const dishesOptionsContainer = document.getElementById(`${inputId}-options`);
 
         dishInput.onblur = () => closeOptionsContainer(dishesOptionsContainer, searchDish);
@@ -87,7 +96,7 @@
         filterDishesOptions(dishes);
         
         function searchDish(){
-            let filteredArray = dishes.filter(dish => dish.toLowerCase().search(dishInput.value.toLowerCase()) != -1);
+            let filteredArray = dishes.filter(dish => dish["name"].toLowerCase().search(dishInput.value.toLowerCase()) != -1);
             filterDishesOptions(filteredArray);
         }
 
@@ -99,7 +108,7 @@
 
                 for (let dish of array) {
                     let style = dish == lastDish ? "": "border-b";
-                    dishesOptionsContainer.innerHTML += `<span data-id='${dish}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${dish}</span>`;
+                    dishesOptionsContainer.innerHTML += `<span data-id='${dish["id"]}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${dish["name"]}</span>`;
                 }
             } else {
                 dishesOptionsContainer.innerHTML = "<span class='px-2 py-1 text-gray-500'>No dishes available</span>";
@@ -107,13 +116,14 @@
 
             const dishesOptions = Array.from(dishesOptionsContainer.children);
             dishesOptions.forEach(option => {
-                let menuId = option.getAttribute("data-id");
-                let menu = option.textContent;
-                if (!menuId) return;
+                let dishId = option.getAttribute("data-id");
+                let dishName = option.textContent;
+                if (!dishId) return;
 
                 option.onmousedown = function(){
-                    dishInput.value = menu;
-                    dishInput.setAttribute("data-id", menuId);
+                    dishInput.value = dishName;
+                    dishInput.setAttribute("data-id", dishId);
+                    dishIdInput.value = dishId;
                 }
             });
         }
@@ -147,13 +157,56 @@
         tempDiv.innerHTML = `
                     <div class="relative flex flex-col gap-1">
                         <label for="dish${num}" class="font-bold">Dish ${num}:</label>
-                        <input id="dish${num}" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
+                        <input autocomplete="off" id="dish${num}" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
+                        <input type="hidden" name="dish${num}" id="dish${num}-id">
                         <div id="dish${num}-options" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
                         </div>
                     </div>`;
 
         return tempDiv.firstElementChild;
     }
+
+
+    document.getElementById("menu-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const menuName = document.getElementById("name").value.trim();
+        const menuPrice = document.getElementById("price").value.trim();
+        
+        const dishesIds = Array.from(dishesElementsContainer.querySelectorAll("input[type='hidden']")).map(input => input.value);
+
+        const menuNameRegex = /^[A-Za-z]+$/; // No special characters
+        const minPrice = 0;
+
+        if (!menuName || !menuPrice) {
+            Swal.fire("Error", "All fields are required!", "error");
+            return;
+        }
+
+        for (let dishId of dishesIds) {
+            if (!dishId) {
+                Swal.fire("Error", "Please select the menu dishes!", "error");
+                return;
+            }   
+        }
+
+        if (!menuNameRegex.test(menuName)) {
+            Swal.fire("Error", "Menu name must only contain letters!", "error");
+            return;
+        }
+
+        if (!parseFloat(menuPrice)) {
+            Swal.fire("Error", "Please enter a valid price!", "error");
+            return;
+        }
+
+        if (parseFloat(menuPrice) < minPrice) {
+            Swal.fire("Error", "Price must be at positive number!", "error");
+            return;
+        }
+
+        this.submit();
+    });
 </script>
 
 <?php include(APPROOT . '/views/inc/footer.php')?>

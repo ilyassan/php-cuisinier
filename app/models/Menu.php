@@ -43,7 +43,34 @@
             ");
             $this->db->bind('i', $id);
         
-            return $this->db->results();
+            $data =  $this->db->results();
+
+            // Group dishes under the menu
+            $menu = null;
+            $dishes = [];
+            foreach ($data as $row) {
+                if (!$menu) {
+                    $menu = [
+                        'id' => $row["menu_id"],
+                        'name' => $row["menu_name"],
+                        'price' => $row["price"],
+                        'description' => $row["description"],
+                    ];
+                }
+                if ($row["dish_id"]) {
+                    $dishes[] = [
+                        'id' => $row["dish_id"],
+                        'name' => $row["dish_name"],
+                    ];
+                }
+            }
+        
+            $data = [
+                'menu' => $menu,
+                'dishes' => $dishes
+            ];
+
+            return $data;
         }
         
         public function createMenu($name, $price) {
@@ -54,6 +81,16 @@
             // Execute
             if($this->db->execute()){
                 return $this->db->getLastInsertId();
+            }
+            return false;
+        }
+
+        public function updateMenu($id, $name, $price) {
+            $this->db->query("UPDATE menus SET name = ?, price = ? WHERE id = ?");
+            $this->db->bind('sii', $name, $price, $id);
+
+            if($this->db->execute()){
+                return true;
             }
             return false;
         }
@@ -84,5 +121,15 @@
                 echo "Error in attaching the dishes: " . $e->getMessage();
                 return false;
             }
+        }
+
+        public function removeAttachedDishes($menuId) {
+            $this->db->query("DELETE FROM menu_dishes WHERE menu_id = ?");
+            $this->db->bind('i', $menuId);
+
+            if($this->db->execute()){
+                return true;
+            }
+            return false;
         }
     }
