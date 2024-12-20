@@ -143,4 +143,12 @@
             $_SESSION['user_id'] = $user->id;
             redirect('/');
         }
+
+        public function logout(){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                unset($_SESSION['user_id']);
+                session_destroy();
+                redirect('users/login');
+            }
+        }
     }
