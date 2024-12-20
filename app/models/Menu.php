@@ -44,7 +44,7 @@
             $this->db->bind('i', $id);
         
             return $this->db->results();
-        }   
+        }
         
         public function createMenu($name, $price) {
             $this->db->query("INSERT INTO menus (name, price) VALUES (?, ?)");
@@ -54,6 +54,16 @@
             // Execute
             if($this->db->execute()){
                 return $this->db->getLastInsertId();
+            }
+            return false;
+        }
+
+        public function deleteMenu($id) {
+            $this->db->query("DELETE FROM menus WHERE id = ?");
+            $this->db->bind('i', $id);
+
+            if($this->db->execute()){
+                return true;
             }
             return false;
         }
