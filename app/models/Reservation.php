@@ -13,6 +13,21 @@
 
             return $reservations;
         }
+
+        public function create($menuId, $clientId, $guestsNumber, $reservationDatetime) {
+            $this->db->query(
+                "INSERT INTO reservations (menu_id, client_id, number_of_guests, reservation_date)
+                VALUES (?, ?, ?, ?)"
+            );
+
+            $this->db->bind('iiis', $menuId, $clientId, $guestsNumber, $reservationDatetime);
+
+            if ($this->db->execute()) {
+                return true;
+            }else{
+                return false;
+            }
+        }
         
         public function getAllWithMenuAndClient() {
             $this->db->query(

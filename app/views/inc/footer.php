@@ -37,6 +37,12 @@
         Swal.fire("Success", successMessage, "success");
     }
 </script>
+<script>
+    let errorMessage = <?= json_encode(flash("error")); ?>;
+    if (errorMessage) {
+        Swal.fire("Error", errorMessage, "error");
+    }
+</script>
 
 </body>
 </html>
