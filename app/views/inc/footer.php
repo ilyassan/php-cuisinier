@@ -31,6 +31,12 @@
         burgerMenu.classList.toggle("text-based");
     };
 </script>
+<script>
+    let successMessage = <?= json_encode(flash("success")); ?>;
+    if (successMessage) {
+        Swal.fire("Success", successMessage, "success");
+    }
+</script>
 
 </body>
 </html>

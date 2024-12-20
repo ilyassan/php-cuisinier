@@ -62,5 +62,17 @@ class Database {
         $this->stmt->store_result();
         return $this->stmt->num_rows;
     }
+
+    public function beginTransaction() {
+        $this->dbh->begin_transaction();
+    }
+
+    public function commit() {
+        $this->dbh->commit();
+    }
+
+    public function getLastInsertId() {
+        return $this->dbh->insert_id;
+    }    
 }
 ?>

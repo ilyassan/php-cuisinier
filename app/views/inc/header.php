@@ -7,6 +7,7 @@
     <link rel="stylesheet" href=<?= URLROOT . '/css/all.min.css'?>>
     <link rel="stylesheet" href=<?= URLROOT . '/css/fontawesome.min.css'?>>
     <link rel="stylesheet" href=<?= URLROOT . '/css/output.css'?>>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <header class="bg-secondary">
