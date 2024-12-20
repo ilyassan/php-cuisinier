@@ -78,6 +78,8 @@
             Swal.fire("Error", "Passwords do not match!", "error");
             return;
         }
+        
+        this.submit();
     });
 </script>
 
