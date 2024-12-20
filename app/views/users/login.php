@@ -1,7 +1,5 @@
 <?php include(APPROOT . '/views/inc/header.php') ?>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <div class="bg-white border-2 my-8 mx-auto rounded-lg shadow-lg p-8 w-full max-w-md">
     <h1 class="text-3xl font-bold text-center text-secondary mb-6">Welcome Back!</h1>
     <p class="text-center text-gray-500 mb-8">Log in to your account</p>
@@ -50,13 +48,6 @@
 
         this.submit(); 
     });
-</script>
-
-<script>
-    let isSuccesRegistered = <?= json_encode(flash("register_success")); ?>;
-    if (isSuccesRegistered) {
-        Swal.fire("Success", isSuccesRegistered, "success");
-    }
 </script>
 
 <script>

@@ -44,5 +44,35 @@
             $this->db->bind('i', $id);
         
             return $this->db->results();
-        }        
+        }   
+        
+        public function createMenu($name, $price) {
+            $this->db->query("INSERT INTO menus (name, price) VALUES (?, ?)");
+            // Bind values
+            $this->db->bind('si', $name, $price);
+
+            // Execute
+            if($this->db->execute()){
+                return $this->db->getLastInsertId();
+            }
+            return false;
+        }
+
+        public function attachDishes($menuId, $dishesIds){
+            try {
+                $this->db->beginTransaction();
+    
+                foreach ($dishesIds as $dishId) {
+                    $this->db->query("INSERT INTO menu_dishes (menu_id, dish_id) VALUES (?, ?)");
+                    $this->db->bind("ii", $menuId, $dishId);
+                    $this->db->execute();
+                }
+    
+                $this->db->commit();
+                return true;
+            } catch (Exception $e) {
+                echo "Error in attaching the dishes: " . $e->getMessage();
+                return false;
+            }
+        }
     }
