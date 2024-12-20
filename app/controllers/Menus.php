@@ -112,4 +112,17 @@
                 $this->view("menu/create", $dishes);
             }
         }
+
+        public function delete() {
+            if (user()->isClient()) {
+                redirect("menu");
+            }
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $menuId = $_POST['menu_id'];
+                $this->menuModel->deleteMenu($menuId);
+                flash("success", "Menu has been deleted successfully.");
+            }
+            redirect("menu");
+        }
     }
