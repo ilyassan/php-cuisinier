@@ -2,6 +2,7 @@
     class Menus extends Controller {
 
         private $menuModel;
+        private $dishModel;
 
         public function __construct(){
             if (!isLoggedIn()) {
