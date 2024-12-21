@@ -122,4 +122,14 @@
             }
         }
 
+        public function refuse($id) {
+            $this->db->query("UPDATE reservations SET status = 'declined' WHERE id = ?");
+            $this->db->bind('i', $id);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }

@@ -207,4 +207,23 @@
             }
         }
 
+        public function refuse($id) {
+            if (user()->isClient() || !$id) {
+                redirect("reservations");
+            }
+
+            $reservation = $this->reservationModel->getFullReservationById($id);
+
+            if ($reservation->status != "pending") {
+                flash("warning", "You cannot refuse a reservation has been ". $reservation->status);
+                redirect("reservations");
+            }
+
+            if ($this->reservationModel->refuse($id)) {
+                flash("success", "Reservation has been refused successfully.");
+                redirect("reservations");
+            } else {
+                die("Something went wrong.");
+            }
+        }
     }
