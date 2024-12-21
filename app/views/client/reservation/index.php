@@ -59,10 +59,9 @@
                             $<?= $reservation["price"] ?>
                         </td>
                         <td class="flex items-center px-6 py-4">
-                            <a href=<?= URLROOT . '/reservations/show/'. $reservation["id"]?> class="bg-tertiary text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Edit</a>
-                            <form class="m-0" action=<?= URLROOT . '/reservations/delete'?> method="POST">
+                            <a href=<?= URLROOT . '/reservations/edit/'. $reservation["id"]?> class="bg-tertiary text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Edit</a>
+                            <form class="m-0" action=<?= URLROOT. "/reservations/delete/" . $reservation["id"] ?> method="POST">
                                 <button class="bg-gray-400 text-based px-2 py-1 rounded-lg cursor-pointer">Cancel</button>
-                                <input type="hidden" name="id" value=<?= $reservation["id"]?>>
                             </form>
                         </td>
                     </tr>

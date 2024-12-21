@@ -92,6 +92,7 @@
         public function edit($id) {
             if (user()->isClient()) {
                 redirect("menu");
+                return;
             }
 
             if($_SERVER['REQUEST_METHOD'] == 'POST'){           
@@ -158,6 +159,7 @@
         public function delete() {
             if (user()->isClient()) {
                 redirect("menu");
+                return;
             }
 
             if($_SERVER['REQUEST_METHOD'] == 'POST'){

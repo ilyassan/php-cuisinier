@@ -1,3 +1,5 @@
+<?php print_r($_SESSION); ?>
+
 <footer class="bg-secondary py-8">
     <div class="container flex justify-between flex-col gap-7 sm:flex-row sm:gap-0">
         <div class="text-3xl text-center sm:text-left font-lux font-bold text-primary">DINOUS</div>
@@ -36,11 +38,15 @@
     if (successMessage) {
         Swal.fire("Success", successMessage, "success");
     }
-</script>
-<script>
+
     let errorMessage = <?= json_encode(flash("error")); ?>;
     if (errorMessage) {
         Swal.fire("Error", errorMessage, "error");
+    }
+
+    let warningMessage = <?= json_encode(flash("warning")); ?>;
+    if (warningMessage) {
+        Swal.fire("Warning", warningMessage, "warning");
     }
 </script>
 
