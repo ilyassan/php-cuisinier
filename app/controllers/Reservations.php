@@ -27,7 +27,9 @@
         public function create() {
             if (user()->isChef()) {
                 redirect("reservations");
+                return;
             }
+            
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 // Sanitize POST data
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -89,15 +91,16 @@
         public function edit($id) {
             if (user()->isChef() || !$id) {
                 redirect("reservations");
+                return;
             }
 
             $reservation = $this->reservationModel->getFullReservationById($id);
-            if ($reservation->status != "pending") {
-                flash("success", "You cannot edit a reservation has been ". $reservation->status);
+            if($reservation->status != "pending") {
+                flash("warning", "You cannot edit a reservation has been ". $reservation->status);
                 redirect("reservations");
             }
 
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){           
+            elseif($_SERVER['REQUEST_METHOD'] == 'POST'){           
                 // Sanitize POST data
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -161,26 +164,26 @@
                 $this->view("reservation/edit", $data);
             }
         }
-        // public function delete($id) {
-        //     if (user()->isChef()) {
-        //     redirect("reservations");
-        //     }
 
-        //     $reservation = $this->reservationModel->getReservationById($id);
 
-        //     if ($reservation->client_id != user()->getId()) {
-        //     redirect("reservations");
-        //     }
+        public function delete($id) {
 
-        //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //     if ($this->reservationModel->delete($id)) {
-        //         flash("success", "Reservation has been deleted successfully.");
-        //         redirect("reservations");
-        //     } else {
-        //         die("Something went wrong.");
-        //     }
-        //     } else {
-        //     $this->view("reservation/delete", $reservation);
-        //     }
-        // }
+            if (user()->isChef() || $_SERVER['REQUEST_METHOD'] != 'POST' || !$id) {
+                redirect("reservations");
+            }
+
+            $reservation = $this->reservationModel->getFullReservationById($id);
+
+            if ($reservation->client_id != user()->getId()) {
+                redirect("reservations");
+            }
+
+                
+            if ($this->reservationModel->delete($id)) {
+                flash("success", "Reservation has been deleted successfully.");
+                redirect("reservations");
+            } else {
+                die("Something went wrong.");
+            }
+        }
     }

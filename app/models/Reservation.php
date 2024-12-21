@@ -99,4 +99,15 @@
 
             return $reservations;
         }
+
+        public function delete($id) {
+            $this->db->query("DELETE FROM reservations WHERE id = ?");
+            $this->db->bind('i', $id);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }

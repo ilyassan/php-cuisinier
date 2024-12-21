@@ -27,8 +27,10 @@
             </div>
 
             <div class="flex gap-5">
-                <a class="flex cursor-pointer mt-8 w-fit items-center gap-3 bg-tertiary px-2 py-1 rounded-lg text-based">Edit</a>
-                <button class="flex cursor-pointer mt-8 w-fit items-center gap-3 bg-gray-400 px-2 py-1 rounded-lg text-based">Cancel</button>
+                <a href=<?= URLROOT. "/reservations/edit/" . $reservation->id ?> class="flex cursor-pointer mt-8 w-fit items-center gap-3 bg-tertiary px-2 py-1 rounded-lg text-based">Edit</a>
+                <form action=<?= URLROOT. "/reservations/delete/" . $reservation->id ?> method="POST">
+                    <button class="flex cursor-pointer mt-8 w-fit items-center gap-3 bg-gray-400 px-2 py-1 rounded-lg text-based">Cancel</button>
+                </form>
             </div>
         </div>
     </div>
