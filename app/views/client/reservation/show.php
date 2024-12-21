@@ -14,15 +14,15 @@
             <div class="flex flex-col gap-6">
                 <div class="flex flex-col gap-1">
                     <label class="font-bold">Menu:</label>
-                    <div class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary"><?= $reservation->menu_name ?></div>
+                    <div class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary"><?= htmlspecialchars($reservation->menu_name) ?></div>
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="guests" class="font-bold">Number of guests:</label>
-                    <div class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary"><?= $reservation->number_of_guests ?></div>
+                    <div class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary"><?= htmlspecialchars($reservation->number_of_guests) ?></div>
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="date" class="font-bold">Date of feast:</label>
-                    <div class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary"><?= $reservation->reservation_date ?></div>
+                    <div class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary"><?= htmlspecialchars($reservation->reservation_date) ?></div>
                 </div>
             </div>
 

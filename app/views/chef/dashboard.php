@@ -1,9 +1,9 @@
 <?php
     include(APPROOT . '/views/inc/header.php');
-    $pendingReservationsCount = $data['pendingReservationsCount'];
-    $todayConfirmedReservationsCount = $data['todayConfirmedReservationsCount'];
-    $tommorowConfirmedReservationsCount = $data['tommorowConfirmedReservationsCount'];
-    $clientsCount = $data['clientsCount'];
+    $pendingReservationsCount = htmlspecialchars($data['pendingReservationsCount']);
+    $todayConfirmedReservationsCount = htmlspecialchars($data['todayConfirmedReservationsCount']);
+    $tommorowConfirmedReservationsCount = htmlspecialchars($data['tommorowConfirmedReservationsCount']);
+    $clientsCount = htmlspecialchars($data['clientsCount']);
     $nextReservation = $data['nextReservation'];
     $reservationsRecievedInLastWeek = $data['reservationsRecievedInLastWeek'];
 ?>
@@ -16,28 +16,28 @@
         <div class="flex w-full flex-col gap-2 border rounded-lg border-gray-500 text-gray-600 p-5 bg-yellow-50">
             <div class="flex w-full text-xl items-center gap-3">
                 <i class="fa-solid fa-calendar-days text-yellow-500"></i>
-                <span><?=$pendingReservationsCount?></span>
+                <span><?= $pendingReservationsCount ?></span>
             </div>
             <p class="text-xs">Number of the pending reservations</p>
         </div>
         <div class="flex w-full flex-col gap-2 border rounded-lg border-gray-500 text-gray-600 p-5 bg-green-50">
             <div class="flex w-full text-xl items-center gap-3">
                 <i class="fa-solid fa-check text-green-600"></i>
-                <span><?=$todayConfirmedReservationsCount?></span>
+                <span><?= $todayConfirmedReservationsCount ?></span>
             </div>
             <p class="text-xs">Number of the confirmed reservations of today</p>
         </div>
         <div class="flex w-full flex-col gap-2 border rounded-lg border-gray-500 text-gray-600 p-5 bg-red-50">
             <div class="flex w-full text-xl items-center gap-3">
                 <i class="fa-solid fa-check-double text-red-600"></i>
-                <span><?=$tommorowConfirmedReservationsCount?></span>
+                <span><?= $tommorowConfirmedReservationsCount ?></span>
             </div>
             <p class="text-xs">Number of the confirmed reservations of tommorow</p>
         </div>
         <div class="flex w-full flex-col gap-2 border rounded-lg border-gray-500 text-gray-600 p-5 bg-blue-50">
             <div class="flex w-full text-xl items-center gap-3">
                 <i class="fa-solid fa-users text-blue-600"></i>
-                <span><?=$clientsCount?></span>
+                <span><?= $clientsCount ?></span>
             </div>
             <p class="text-xs">Number of the clients</p>
         </div>
@@ -57,15 +57,15 @@
                 </div>
 
                 <div class="flex-1 text-center md:text-left">
-                    <h4 class="text-lg font-semibold text-gray-800 mb-2"><?= $nextReservation->client_name ?></h4>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2"><?= htmlspecialchars($nextReservation->client_name) ?></h4>
                     <p class="text-sm text-gray-600 mb-1 flex items-center justify-center md:justify-start">
-                        <span>Menu:</span> <span class="font-medium ml-1"><?= $nextReservation->menu_name ?></span>
+                        <span>Menu:</span> <span class="font-medium ml-1"><?= htmlspecialchars($nextReservation->menu_name) ?></span>
                     </p>
                     <p class="text-sm text-gray-600 mb-1 flex items-center justify-center md:justify-start">
-                        <span>Guests:</span> <span class="font-medium ml-1"><?= $nextReservation->number_of_guests ?></span>
+                        <span>Guests:</span> <span class="font-medium ml-1"><?= htmlspecialchars($nextReservation->number_of_guests) ?></span>
                     </p>
                     <p class="text-sm text-gray-600 flex items-center justify-center md:justify-start">
-                        <span>Price:</span> <span class="font-medium ml-1">$<?= $nextReservation->price ?></span>
+                        <span>Price:</span> <span class="font-medium ml-1">$<?= htmlspecialchars($nextReservation->price) ?></span>
                     </p>
                 </div>
 

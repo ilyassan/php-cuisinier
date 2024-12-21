@@ -35,23 +35,23 @@
                 ?>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <?= $reservation["client_name"] ?>
+                            <?= htmlspecialchars($reservation["client_name"]) ?>
                         </th>
                         <td class="px-6 py-4">
-                            <?= $reservation["menu_name"] ?>
+                            <?= htmlspecialchars($reservation["menu_name"]) ?>
                         </td>
                         <td class="px-6 py-4">
-                            <?= $reservation["reservation_date"] ?>
+                            <?= htmlspecialchars($reservation["reservation_date"]) ?>
                         </td>
                         <td class="px-6 py-4">
-                            $<?= $reservation["price"] ?>
+                            $<?= htmlspecialchars($reservation["price"]) ?>
                         </td>
                         <td class="flex px-6 py-4">
                             <?php
                                 if($reservation["status"] == "pending"){
                                 echo '<form method="POST">
-                                        <button formaction='.URLROOT. "/reservations/accept/". $reservation["id"] .' class="bg-green-600 text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Accept</button>
-                                        <button formaction='.URLROOT. "/reservations/refuse/". $reservation["id"] .' class="bg-red-200 text-red-700 px-2 py-1 rounded-lg cursor-pointer">Refuse</button>
+                                        <button formaction='.URLROOT. "/reservations/accept/". htmlspecialchars($reservation["id"]) .' class="bg-green-600 text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Accept</button>
+                                        <button formaction='.URLROOT. "/reservations/refuse/". htmlspecialchars($reservation["id"]) .' class="bg-red-200 text-red-700 px-2 py-1 rounded-lg cursor-pointer">Refuse</button>
                                     </form>';
                                 }
                                 elseif($reservation["status"] == "declined"){

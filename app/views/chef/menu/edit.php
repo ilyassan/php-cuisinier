@@ -12,15 +12,15 @@
             <label for="image" class="cursor-pointer border-[6px] border-secondary rounded-lg absolute w-full h-full bg-[#eee] text-gray-500 flex justify-center items-center">Upload an Image</label>
             <input type="file" id="image" class="hidden" accept="image/gif, image/jpeg, image/png">
         </div>
-        <form id="menu-form" method="POST" action=<?= URLROOT . '/menus/edit/'. $menu["id"]?> class="sm:w-1/2">
+        <form id="menu-form" method="POST" action="<?= htmlspecialchars(URLROOT . '/menus/edit/'. $menu["id"]) ?>" class="sm:w-1/2">
             <div class="flex flex-col gap-3">
                 <div class="flex flex-col gap-1">
                     <label for="name" class="font-bold">Menu Name:</label>
-                    <input id="name" value=<?=$menu["name"]?> type="text" placeholder="Enter the menu name" name="name" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
+                    <input id="name" value="<?= htmlspecialchars($menu["name"]) ?>" type="text" placeholder="Enter the menu name" name="name" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="price" class="font-bold">Price:</label>
-                    <input min="0" name="price" step="0.01" value=<?=$menu["price"]?> id="price" type="number" value="Dessert , Chocolate Mousse, Fresh Fruit" placeholder="Enter the menu price" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
+                    <input min="0" name="price" step="0.01" value="<?= htmlspecialchars($menu["price"]) ?>" id="price" type="number" placeholder="Enter the menu price" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
                 </div>
                 <div id="dishes" class="flex flex-col gap-3">
                     <div class="relative flex flex-col gap-1">
@@ -31,8 +31,8 @@
                                     <i id="add-dish" class="cursor-pointer fa-solid fa-plus"></i>
                                 </div>
                             </div>
-                            <input id="dish1" value=<?=$dishes[0]["name"]?> data-id=<?=$dishes[0]["id"]?> class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
-                            <input type="hidden" id="dish1-id" name="dish1" value=<?=$dishes[0]["id"]?>>
+                            <input id="dish1" value="<?= htmlspecialchars($dishes[0]["name"]) ?>" data-id="<?= htmlspecialchars($dishes[0]["id"]) ?>" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
+                            <input type="hidden" id="dish1-id" name="dish1" value="<?= htmlspecialchars($dishes[0]["id"]) ?>">
                             <div id="dish1-options" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
                             </div>
                     </div>
@@ -41,10 +41,10 @@
                         if($i != 0){
                     ?>
                         <div class="relative flex flex-col gap-1">
-                            <label for=<?="dish". ($i + 1)?> class="font-bold">Dish <?=$i + 1?>:</label>
-                            <input id=<?="dish". ($i + 1)?> value=<?=$dish["name"]?> data-id=<?=$dish["id"]?> class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
-                            <input type="hidden" id=<?="dish". ($i + 1) . "-id"?> name=<?="dish". ($i + 1)?> value=<?=$dish["id"]?>>
-                            <div id=<?="dish". ($i + 1). "-options"?> class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
+                            <label for="<?= "dish". ($i + 1) ?>" class="font-bold">Dish <?= $i + 1 ?>:</label>
+                            <input id="<?= "dish". ($i + 1) ?>" value="<?= htmlspecialchars($dish["name"]) ?>" data-id="<?= htmlspecialchars($dish["id"]) ?>" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
+                            <input type="hidden" id="<?= "dish". ($i + 1) . "-id" ?>" name="<?= "dish". ($i + 1) ?>" value="<?= htmlspecialchars($dish["id"]) ?>">
+                            <div id="<?= "dish". ($i + 1). "-options" ?>" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
                             </div>
                         </div>
                     <?php

@@ -8,7 +8,7 @@
             <label for="image" class="cursor-pointer border-[6px] border-secondary rounded-lg absolute w-full h-full bg-[#eee] text-gray-500 flex justify-center items-center">Upload an Image</label>
             <input type="file" id="image" class="hidden" accept="image/gif, image/jpeg, image/png">
         </div>
-        <form id="menu-form" action=<?= URLROOT . '/menus/create'?> method="POST" class="sm:w-1/2">
+        <form id="menu-form" action="<?= htmlspecialchars(URLROOT . '/menus/create') ?>" method="POST" class="sm:w-1/2">
             <div class="flex flex-col gap-3">
                 <div class="flex flex-col gap-1">
                     <label for="name" class="font-bold">Menu Name:</label>
@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="price" class="font-bold">Price:</label>
-                    <input autocomplete="off" name="price" min="0" step="0.1" id="price" type="number" value="Dessert , Chocolate Mousse, Fresh Fruit" placeholder="Enter the menu price" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
+                    <input autocomplete="off" name="price" min="0" step="0.1" id="price" type="number" placeholder="Enter the menu price" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
                 </div>
                 <div id="dishes" class="flex flex-col gap-3">
                     <div class="relative flex flex-col gap-1">
@@ -27,7 +27,7 @@
                                 <i id="add-dish" class="cursor-pointer fa-solid fa-plus"></i>
                             </div>
                         </div>
-                        <input autocomplete="off" id="dish1"class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
+                        <input autocomplete="off" id="dish1" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select the dish">
                         <input type="hidden" id="dish1-id" name="dish1">
                         <div id="dish1-options" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
                         </div>
@@ -90,7 +90,7 @@
 
                 for (let dish of array) {
                     let style = dish == lastDish ? "": "border-b";
-                    dishesOptionsContainer.innerHTML += `<span data-id='${dish["id"]}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${dish["name"]}</span>`;
+                    dishesOptionsContainer.innerHTML += `<span data-id='${dish["id"]}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${htmlspecialchars(dish["name"])}</span>`;
                 }
             } else {
                 dishesOptionsContainer.innerHTML = "<span class='px-2 py-1 text-gray-500'>No dishes available</span>";

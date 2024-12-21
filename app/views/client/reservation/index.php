@@ -35,10 +35,10 @@
                 ?>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           <?= $reservation["menu_name"] ?>
+                           <?= htmlspecialchars($reservation["menu_name"]) ?>
                         </th>
                         <td class="px-6 py-4">
-                            <?= $reservation["reservation_date"] ?>
+                            <?= htmlspecialchars($reservation["reservation_date"]) ?>
                         </td>
                         <td class="px-6 py-4">
                             <?php
@@ -52,11 +52,11 @@
                                 }
                                 ?>
                             <span class="<?= $class ?>">
-                                <?= ucfirst($reservation["status"]) ?>
+                                <?= htmlspecialchars(ucfirst($reservation["status"])) ?>
                             </span>
                         </td>
                         <td class="px-6 py-4">
-                            $<?= $reservation["price"] ?>
+                            $<?= htmlspecialchars($reservation["price"]) ?>
                         </td>
                         <td class="flex items-center px-6 py-4">
                             <a href=<?= URLROOT . '/reservations/edit/'. $reservation["id"]?> class="bg-tertiary text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Edit</a>
