@@ -66,7 +66,7 @@
 
                 for (let menu of array) {
                     let style = menu == lastMenu ? "": "border-b";
-                    menusOptionsContainer.innerHTML += `<span data-id='${menu["id"]}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${menu["name"]}</span>`;
+                    menusOptionsContainer.innerHTML += `<span data-id='${menu["id"]}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${htmlspecialchars(menu["name"])}</span>`;
                 }
             } else {
                 menusOptionsContainer.innerHTML = "<span class='px-2 py-1 text-gray-500'>No menus available</span>";
