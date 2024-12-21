@@ -81,8 +81,8 @@
         const dateA = a.querySelector("td").textContent.trim();
         const dateB = b.querySelector("td").textContent.trim();
 
-        const parsedDateA = new Date(dateA);
-        const parsedDateB = new Date(dateB);
+        const parsedDateA = new Date(dateA.replace(/-/g, '/'));
+        const parsedDateB = new Date(dateB.replace(/-/g, '/'));
 
         return parsedDateA - parsedDateB;
     });
