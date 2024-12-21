@@ -72,5 +72,17 @@
 
                 $this->view("reservation/create", $menus);
             }
+
         }
+
+        public function show($id) {
+            $reservation = $this->reservationModel->getFullReservationById($id);
+        
+            if (!$reservation) {
+                redirect("reservations");
+            }
+        
+            // Pass data to the view
+            $this->view('reservation/show', $reservation);
+        }   
     }
