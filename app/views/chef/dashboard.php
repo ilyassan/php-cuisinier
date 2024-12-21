@@ -1,4 +1,14 @@
-<?php include("../inc/header.html") ?>
+<?php
+    include(APPROOT . '/views/inc/header.php');
+    $pendingReservationsCount = $data['pendingReservationsCount'];
+    $todayConfirmedReservationsCount = $data['todayConfirmedReservationsCount'];
+    $tommorowConfirmedReservationsCount = $data['tommorowConfirmedReservationsCount'];
+    $clientsCount = $data['clientsCount'];
+    $nextReservation = $data['nextReservation'];
+    $reservationsRecievedInLastWeek = $data['reservationsRecievedInLastWeek'];
+    print_r($reservationsRecievedInLastWeek);
+?>
+
 
 <section class="bg-gray-100 min-h-screen pt-10 pb-20">
     <h1 class="text-3xl font-bold text-center mb-10">Dashboard</h1>
@@ -7,30 +17,30 @@
         <div class="flex w-full flex-col gap-2 border rounded-lg border-gray-500 text-gray-600 p-5 bg-yellow-50">
             <div class="flex w-full text-xl items-center gap-3">
                 <i class="fa-solid fa-calendar-days text-yellow-500"></i>
-                <span>24</span>
+                <span><?=$pendingReservationsCount?></span>
             </div>
-            <p class="text-xs">Nombre de demandes en attente</p>
+            <p class="text-xs">Number of the pending reservations</p>
         </div>
         <div class="flex w-full flex-col gap-2 border rounded-lg border-gray-500 text-gray-600 p-5 bg-green-50">
             <div class="flex w-full text-xl items-center gap-3">
                 <i class="fa-solid fa-check text-green-600"></i>
-                <span>5</span>
+                <span><?=$todayConfirmedReservationsCount?></span>
             </div>
-            <p class="text-xs">Nombre de demandes approuvées pour la journée</p>
+            <p class="text-xs">Number of the confirmed reservations of today</p>
         </div>
         <div class="flex w-full flex-col gap-2 border rounded-lg border-gray-500 text-gray-600 p-5 bg-red-50">
             <div class="flex w-full text-xl items-center gap-3">
                 <i class="fa-solid fa-check-double text-red-600"></i>
-                <span>7</span>
+                <span><?=$tommorowConfirmedReservationsCount?></span>
             </div>
-            <p class="text-xs">Nombre de demandes approuvées pour pour le jour suivant</p>
+            <p class="text-xs">Number of the confirmed reservations of tommorow</p>
         </div>
         <div class="flex w-full flex-col gap-2 border rounded-lg border-gray-500 text-gray-600 p-5 bg-blue-50">
             <div class="flex w-full text-xl items-center gap-3">
                 <i class="fa-solid fa-users text-blue-600"></i>
-                <span>301</span>
+                <span><?=$clientsCount?></span>
             </div>
-            <p class="text-xs">Nombre de clients inscrits</p>
+            <p class="text-xs">Number of the clients</p>
         </div>
     </div>
 
@@ -48,20 +58,20 @@
                 </div>
 
                 <div class="flex-1 text-center md:text-left">
-                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Napiloun Ahabbane</h4>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2"><?= $nextReservation->client_name ?></h4>
                     <p class="text-sm text-gray-600 mb-1 flex items-center justify-center md:justify-start">
-                        <span>Menu:</span> <span class="font-medium ml-1">Beakery Ram MSI</span>
+                        <span>Menu:</span> <span class="font-medium ml-1"><?= $nextReservation->menu_name ?></span>
                     </p>
                     <p class="text-sm text-gray-600 mb-1 flex items-center justify-center md:justify-start">
-                        <span>Guests:</span> <span class="font-medium ml-1">12</span>
+                        <span>Guests:</span> <span class="font-medium ml-1"><?= $nextReservation->number_of_guests ?></span>
                     </p>
                     <p class="text-sm text-gray-600 flex items-center justify-center md:justify-start">
-                        <span>Price:</span> <span class="font-medium ml-1">$189</span>
+                        <span>Price:</span> <span class="font-medium ml-1">$<?= $nextReservation->price ?></span>
                     </p>
                 </div>
 
                 <div class="flex-shrink-0 mt-4 md:mt-0">
-                    <a href="#" class="bg-primary text-white font-semibold py-1 px-4 rounded-lg shadow">
+                    <a href=<?= URLROOT. "/reservations/show/". $nextReservation->id ?> class="bg-tertiary text-white font-semibold py-1 px-4 rounded-lg shadow">
                         View Details
                     </a>
                 </div>
@@ -83,7 +93,7 @@
             labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
             datasets: [{
                 label: 'Number of Orders',
-                data: [12, 19, 8, 15, 22, 10, 18],
+                data: [...<?= json_encode(array_values($reservationsRecievedInLastWeek)) ?>].map(day => day.count),
                 backgroundColor: [
                     '#f87171', '#fb923c', '#facc15', '#4ade80', '#2dd4bf', '#60a5fa', '#818cf8'
                 ],
@@ -116,4 +126,4 @@
     });
 </script>
 
-<?php include("../inc/footer.html") ?>
+<?php include(APPROOT . '/views/inc/footer.php')?>
