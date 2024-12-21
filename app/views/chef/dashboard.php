@@ -6,7 +6,6 @@
     $clientsCount = $data['clientsCount'];
     $nextReservation = $data['nextReservation'];
     $reservationsRecievedInLastWeek = $data['reservationsRecievedInLastWeek'];
-    print_r($reservationsRecievedInLastWeek);
 ?>
 
 
