@@ -6,7 +6,7 @@
 
         public function __construct(){
             if (!isLoggedIn()) {
-                redirect("/users/login");
+                redirect("users/login");
             }
            $this->menuModel = $this->model('Menu'); 
            $this->dishModel = $this->model('Dish'); 

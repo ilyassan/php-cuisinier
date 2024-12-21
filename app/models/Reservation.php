@@ -132,4 +132,59 @@
                 return false;
             }
         }
+
+        public function getReservationsCountWithStatus($status) {
+            $this->db->query("SELECT COUNT(*) as count FROM reservations WHERE status = ?");
+            $this->db->bind('s', $status);
+
+            $count = $this->db->single();
+
+            return $count->count;
+        }
+
+        public function getConfirmedReservationsCountOfDate($date) {
+            $this->db->query("SELECT COUNT(*) as count FROM reservations WHERE status = 'approved' AND reservation_date = ?");
+            $this->db->bind('s', $date);
+
+            $count = $this->db->single();
+
+            return $count->count;
+        }
+
+        public function getNextConfirmedReservation() {
+            $this->db->query(
+                "SELECT
+                    reservations.*,
+                    menus.name as menu_name,
+                    menus.price as price,
+                    CONCAT(users.first_name, ' ' ,users.last_name) as client_name
+                FROM reservations
+                JOIN menus ON reservations.menu_id = menus.id
+                JOIN users ON reservations.client_id = users.id
+                WHERE reservations.reservation_date >= ? AND reservations.status = 'approved'
+                ORDER BY reservations.reservation_date ASC
+                LIMIT 1"
+            );
+
+            $this->db->bind('s', date('Y-m-d'));
+
+            $reservation = $this->db->single();
+
+            return $reservation;
+        }
+
+        public function getLastWeekReservationsCountGrouped() {
+            $this->db->query(
+                "SELECT
+                    DATE(reservation_date) as date,
+                    COUNT(*) as count
+                FROM reservations
+                WHERE reservation_date >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)
+                GROUP BY DATE(reservation_date)"
+            );
+
+            $reservations = $this->db->results();
+
+            return $reservations;
+        }
     }

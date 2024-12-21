@@ -58,4 +58,14 @@
 
             return $user;
         }
+
+        public function getUsersCountByRole($role) {
+            $this->db->query("SELECT COUNT(*) as count FROM users WHERE role_id = ?");
+            // Bind values
+            $this->db->bind('i', $role == "client" ? self::$clientRoleId : self::$admineRoleId);
+
+            $count = $this->db->single();
+
+            return $count->count;
+        }
     }
