@@ -48,7 +48,23 @@
                 return false;
             }
         }
-        
+
+        public function update($id, $menuId, $guestsNumber, $reservationDatetime) {
+            $this->db->query(
+                "UPDATE reservations
+                SET menu_id = ?, number_of_guests = ?, reservation_date = ?
+                WHERE id = ?"
+            );
+
+            $this->db->bind('iisi', $menuId, $guestsNumber, $reservationDatetime, $id);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function getAllWithMenuAndClient() {
             $this->db->query(
                 "SELECT

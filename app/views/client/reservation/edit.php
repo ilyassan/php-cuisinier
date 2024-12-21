@@ -1,26 +1,34 @@
-<?php include(APPROOT . '/views/inc/header.php')?>
-
+<?php
+    include(APPROOT . '/views/inc/header.php');
+    $reservation = $data["reservation"];
+    $menus = $data["menus"];
+?>
 <section class="pt-10 pb-20">
     <h1 class="text-3xl font-bold text-center mb-10">Edit a Reservation</h1>
     <div class="container flex flex-col sm:flex-row justify-center gap-20 sm:gap-14">
         <div class="flex justify-center">
-            <img class="border-[6px] border-secondary rounded-lg w-96" src="../../assets/images/dishes/23808324.jpg" alt="Menu">
+            <img class="border-[6px] border-secondary rounded-lg w-96" src=<?= URLROOT . "/images/dishes/23808324.jpg" ?> alt="Menu">
         </div>
-        <form action="" class="sm:w-1/2">
+        <form id="menu-form" method="POST" action=<?= URLROOT . '/reservations/edit/' . $reservation->id?> class="sm:w-1/2">
             <div class="flex flex-col gap-6">
                 <div class="relative flex flex-col gap-1">
                     <label for="menu-input" class="font-bold">Menu:</label>
-                    <input data-id="1" value="Steak RassberryPi Mondool" id="menu-input" type="text" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select a menu">
+                    <input autocomplete="off" data-id=<?= $reservation->menu_id ?> value="<?= $reservation->menu_name ?>" id="menu-input" type="text" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" placeholder="Select a menu">
+                    <input type="hidden" value=<?= $reservation->menu_id ?> id="menu-id" name="menu_id">
                     <div id="menus" class="hidden overflow-hidden absolute top-[110%] z-10 bg-[#eee] rounded-lg w-full flex-col">
                     </div>
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="guests" class="font-bold">Number of guests:</label>
-                    <input id="guests" value="13" type="number" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" min="1" placeholder="Number of guests">
+                    <input autocomplete="off" name="guests" id="guests" value=<?= $reservation->number_of_guests ?> type="number" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary" min="1" placeholder="Number of guests">
                 </div>
                 <div class="flex flex-col gap-1">
                     <label for="date" class="font-bold">Date of feast:</label>
-                    <input id="date" value="2073-09-13" type="date" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
+                    <input autocomplete="off" name="date" id="date" value=<?= $reservation->reservation_date ?> type="date" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="time" class="font-bold">Time of feast:</label>
+                    <input autocomplete="off" value=<?= explode(" ", $reservation->reservation_date)[1] ?> id="time" name="time" type="time" class="bg-[#eee] rounded-md px-2 py-1.5 outline-tertiary">
                 </div>
             </div>
 
@@ -30,9 +38,16 @@
 </section>
 
 <script>
-        const menus = ["Steak RassberyPi", "Bousfour Mongoul", "Akiran Jiran", "Lmhamid weneed"];
+        const menus = <?= json_encode($menus) ?>;
+
+
+        const dateInput = document.getElementById("date");
+        let tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dateInput.min = tomorrow.toISOString().split("T")[0];
 
         const menuInput = document.getElementById("menu-input");
+        const menuIdInput = document.getElementById("menu-id");
         const menusOptionsContainer = document.getElementById("menus");
 
         menuInput.onblur = () => closeOptionsContainer(menusOptionsContainer, searchMenu);
@@ -42,7 +57,7 @@
         filterMenusOptions(menus);
         
         function searchMenu(){
-            let filteredArray = menus.filter(menu => menu.toLowerCase().search(menuInput.value.toLowerCase()) != -1);
+            let filteredArray = menus.filter(menu => menu["name"].toLowerCase().search(menuInput.value.toLowerCase()) != -1);
             filterMenusOptions(filteredArray);
         }
 
@@ -54,7 +69,7 @@
 
                 for (let menu of array) {
                     let style = menu == lastMenu ? "": "border-b";
-                    menusOptionsContainer.innerHTML += `<span data-id='${menu}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${menu}</span>`;
+                    menusOptionsContainer.innerHTML += `<span data-id='${menu["id"]}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${menu["name"]}</span>`;
                 }
             } else {
                 menusOptionsContainer.innerHTML = "<span class='px-2 py-1 text-gray-500'>No menus available</span>";
@@ -69,6 +84,7 @@
                 option.onmousedown = function(){
                     menuInput.value = menu;
                     menuInput.setAttribute("data-id", menuId);
+                    menuIdInput.value = menuId;
                 }
             });
         }
@@ -83,6 +99,22 @@
             element.classList.remove("hidden");
             element.classList.add("flex");
         }
+
+        document.getElementById("menu-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const menuId = menuIdInput.value;
+            const guests = document.getElementById("guests").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+            
+            if (!menuId || !guests || !date || !time) {
+                Swal.fire("Error", "All fields are required!", "error");
+                return;
+            }
+
+            this.submit();
+        });
 </script>
 
 <?php include(APPROOT . '/views/inc/footer.php')?>
