@@ -14,6 +14,26 @@
             return $reservations;
         }
 
+        public function getFullReservationById($id) {
+            $this->db->query(
+                "SELECT
+                    reservations.*,
+                    menus.name as menu_name,
+                    menus.price as price,
+                    CONCAT(users.first_name, ' ' ,users.last_name) as client_name
+                FROM reservations
+                JOIN menus ON reservations.menu_id = menus.id
+                JOIN users ON reservations.client_id = users.id
+                WHERE reservations.id = ?
+                "
+                );
+
+            $this->db->bind('i', $id);
+            $reservation = $this->db->single();
+
+            return $reservation;
+        }
+
         public function create($menuId, $clientId, $guestsNumber, $reservationDatetime) {
             $this->db->query(
                 "INSERT INTO reservations (menu_id, client_id, number_of_guests, reservation_date)
