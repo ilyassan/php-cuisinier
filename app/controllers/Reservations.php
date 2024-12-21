@@ -29,7 +29,7 @@
                 redirect("reservations");
                 return;
             }
-            
+
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 // Sanitize POST data
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -186,4 +186,25 @@
                 die("Something went wrong.");
             }
         }
+
+        public function accept($id) {
+            if (user()->isClient() || !$id) {
+                redirect("reservations");
+            }
+
+            $reservation = $this->reservationModel->getFullReservationById($id);
+
+            if ($reservation->status != "pending") {
+                flash("warning", "You cannot accept a reservation has been ". $reservation->status);
+                redirect("reservations");
+            }
+
+            if ($this->reservationModel->accept($id)) {
+                flash("success", "Reservation has been accepted successfully.");
+                redirect("reservations");
+            } else {
+                die("Something went wrong.");
+            }
+        }
+
     }

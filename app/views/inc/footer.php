@@ -1,5 +1,3 @@
-<?php print_r($_SESSION); ?>
-
 <footer class="bg-secondary py-8">
     <div class="container flex justify-between flex-col gap-7 sm:flex-row sm:gap-0">
         <div class="text-3xl text-center sm:text-left font-lux font-bold text-primary">DINOUS</div>

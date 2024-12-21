@@ -49,7 +49,10 @@
                         <td class="flex px-6 py-4">
                             <?php
                                 if($reservation["status"] == "pending"){
-                                echo '<span class="bg-green-600 text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Accept</span><span class="bg-red-200 text-red-700 px-2 py-1 rounded-lg cursor-pointer">Refuse</span>';
+                                echo '<form method="POST">
+                                        <button formaction='.URLROOT. "/reservations/accept/". $reservation["id"] .' class="bg-green-600 text-based px-2 py-1 rounded-lg cursor-pointer mr-5">Accept</button>
+                                        <button formaction='.URLROOT. "/reservations/refuse/". $reservation["id"] .' class="bg-red-200 text-red-700 px-2 py-1 rounded-lg cursor-pointer">Refuse</button>
+                                    </form>';
                                 }
                                 elseif($reservation["status"] == "declined"){
                                 echo '<span class="bg-red-200 text-red-700 px-2 py-1 rounded-lg cursor-pointer">Refused <i class="fa-regular fa-x"></i></span>';
@@ -73,11 +76,11 @@
     const reservationsElements = Array.from(document.querySelector("tbody").children);
 
     reservationsElements.sort((a, b) => {
-        const dateA = a.querySelector("td").textContent.trim();
-        const dateB = b.querySelector("td").textContent.trim();
+        const dateA = a.querySelector("td:nth-child(3)").textContent.trim();
+        const dateB = b.querySelector("td:nth-child(3)").textContent.trim();
 
-        const parsedDateA = new Date(dateA);
-        const parsedDateB = new Date(dateB);
+        const parsedDateA = new Date(dateA.replace(/-/g, '/'));
+        const parsedDateB = new Date(dateB.replace(/-/g, '/'));
 
         return parsedDateA - parsedDateB;
     });
