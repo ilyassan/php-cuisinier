@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    font-family: 'Lato', sans-serif;    
+}
+
+.font-lux{
+    font-family: 'Playfair Display', serif;
+}
+
+.container {
+    @apply px-2 sm:px-4 md:px-0 mx-auto
+}
