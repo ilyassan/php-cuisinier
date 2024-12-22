@@ -6,10 +6,10 @@
 ?>
 <section class="pt-10 pb-20">
     <h1 class="text-3xl font-bold text-center mb-10">Edit Menu</h1>
-    <div class="container flex flex-col sm:flex-row justify-center gap-20 sm:gap-14">
-        <div class="flex relative justify-center h-96 w-96">
-            <img id="menu-image" class="border-[6px] border-secondary rounded-lg" src="../../assets/images/dishes/23808324.jpg" alt="Menu">
-            <label for="image" class="cursor-pointer border-[6px] border-secondary rounded-lg absolute w-full h-full bg-[#eee] text-gray-500 flex justify-center items-center">Upload an Image</label>
+    <div class="container flex flex-col sm:flex-row justify-center gap-20 sm:gap-14 h-fit">
+        <div class="flex relative justify-center h-fit w-96">
+            <img id="menu-image" class="border-[6px] border-secondary rounded-lg h-fit" src=<?= URLROOT . "/images/dishes/23808324.jpg" ?> alt="Menu">
+            <label for="image" class="opacity-0 cursor-pointer border-[6px] border-secondary rounded-lg absolute w-full h-full bg-[#eee] text-gray-500 flex justify-center items-center">Upload an Image</label>
             <input type="file" id="image" class="hidden" accept="image/gif, image/jpeg, image/png">
         </div>
         <form id="menu-form" method="POST" action="<?= htmlspecialchars(URLROOT . '/menus/edit/'. $menu["id"]) ?>" class="sm:w-1/2">
@@ -175,7 +175,7 @@
         
         const dishesIds = Array.from(dishesElementsContainer.querySelectorAll("input[type='hidden']")).map(input => input.value);
 
-        const menuNameRegex = /^[A-Za-z]+$/; // No special characters
+        const menuNameRegex = /^[A-Za-z ]+$/; // No special characters
         const minPrice = 0;
 
         if (!menuName || !menuPrice) {

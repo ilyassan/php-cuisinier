@@ -6,7 +6,7 @@
 
 <section class="pt-10 pb-20">
     <h1 class="text-3xl font-bold text-center mb-10">Reservation Details</h1>
-    <div class="container flex flex-col sm:flex-row justify-center gap-20 sm:gap-14">
+    <div class="container flex flex-col sm:flex-row justify-center gap-20 sm:gap-14 h-fit">
         <div class="flex justify-center">
             <img class="border-[6px] border-secondary rounded-lg w-96" src=<?= URLROOT . "/images/dishes/23808324.jpg" ?> alt="Menu">
         </div>

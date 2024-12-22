@@ -21,7 +21,7 @@
         public function show($id) {
             $menuWithDishes = $this->menuModel->getMenuWithDishes($id);
         
-            if (!$menuWithDishes) {
+            if (!$menuWithDishes["menu"]) {
                 redirect("menus");
             }
         
@@ -133,7 +133,7 @@
                         $this->menuModel->attachDishes($id, $dishesIds);
 
                         flash('success', 'The menu has been updated successfully.');
-                        redirect('menus/edit/'. $id);
+                        redirect('menus/show/'. $id);
                     }catch(Exception $e){
                         die('Something went wrong');
                     }
@@ -146,7 +146,7 @@
                 $menuWithDishes = $this->menuModel->getMenuWithDishes($id);
                 $allDishes = $this->dishModel->getAll();
         
-                if (!$menuWithDishes) {
+                if (!$menuWithDishes["menu"]) {
                     redirect("menus");
                 }
                 $menuWithDishes["all_dishes"] = $allDishes;

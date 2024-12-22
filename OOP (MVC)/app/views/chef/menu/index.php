@@ -1,7 +1,7 @@
 <?php include(APPROOT . '/views/inc/header.php')?>
 
 <section class="relative">
-    <img class="max-h-[80vh] min-h-[35vh] object-cover w-full" src="<?= htmlspecialchars(URLROOT . "/images/steak.webp", ENT_QUOTES, 'UTF-8') ?>" alt="Steak">
+    <img class="max-h-[80vh] min-h-[35vh] object-cover w-full" src="<?= URLROOT . "/images/steak.webp" ?>" alt="Steak">
     <div class="flex justify-center items-center absolute w-full h-full left-0 top-0 bg-secondary bg-opacity-80">
         <div class="container flex mb-6 mx-auto flex-col gap-6 justify-center items-center">
             <h1 class="text-primary font-lux text-4xl">DINOUS</h1>

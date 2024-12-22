@@ -90,7 +90,7 @@
 
                 for (let dish of array) {
                     let style = dish == lastDish ? "": "border-b";
-                    dishesOptionsContainer.innerHTML += `<span data-id='${dish["id"]}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${htmlspecialchars(dish["name"])}</span>`;
+                    dishesOptionsContainer.innerHTML += `<span data-id='${dish["id"]}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${dish["name"]}</span>`;
                 }
             } else {
                 dishesOptionsContainer.innerHTML = "<span class='px-2 py-1 text-gray-500'>No dishes available</span>";
@@ -157,7 +157,7 @@
         
         const dishesIds = Array.from(dishesElementsContainer.querySelectorAll("input[type='hidden']")).map(input => input.value);
 
-        const menuNameRegex = /^[A-Za-z]+$/; // No special characters
+        const menuNameRegex = /^[A-Za-z ]+$/; // No special characters
         const minPrice = 0;
 
         if (!menuName || !menuPrice) {

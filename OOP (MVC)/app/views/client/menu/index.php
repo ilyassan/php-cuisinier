@@ -6,7 +6,7 @@
             <div class="container flex mb-6 mx-auto flex-col gap-6 justify-center items-center">
                 <h1 class="text-primary font-lux text-4xl">DINOUS</h1>
                 <p class="text-based text-center text-lg">Chef Ilyass brings gourmet cuisine and unforgettable flavors straight to your table. With personalized menus and exceptional quality, every dish tells a story of passion, precision, and elegance.</p>
-                <button class="flex items-center gap-2 px-3 py-1 bg-tertiary rounded-lg text-based">Reservate Now <i class="fa-solid fa-check-to-slot"></i></button>
+                <a href=<?= URLROOT . "/reservations/create" ?> class="flex items-center gap-2 px-3 py-1 bg-tertiary rounded-lg text-based">Reservate Now <i class="fa-solid fa-check-to-slot"></i></a>
             </div>
         </div>
     </section>
