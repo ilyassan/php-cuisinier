@@ -1,9 +1,9 @@
 <?php
     include(APPROOT . '/views/inc/header.php');
-    $pendingReservationsCount = htmlspecialchars($data['pendingReservationsCount']);
-    $todayConfirmedReservationsCount = htmlspecialchars($data['todayConfirmedReservationsCount']);
-    $tommorowConfirmedReservationsCount = htmlspecialchars($data['tommorowConfirmedReservationsCount']);
-    $clientsCount = htmlspecialchars($data['clientsCount']);
+    $pendingReservationsCount = $data['pendingReservationsCount'];
+    $todayConfirmedReservationsCount = $data['todayConfirmedReservationsCount'];
+    $tommorowConfirmedReservationsCount = $data['tommorowConfirmedReservationsCount'];
+    $clientsCount = $data['clientsCount'];
     $nextReservation = $data['nextReservation'];
     $reservationsRecievedInLastWeek = $data['reservationsRecievedInLastWeek'];
 ?>

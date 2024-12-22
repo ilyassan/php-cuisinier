@@ -4,7 +4,7 @@
     <h1 class="text-3xl font-bold text-center mb-10">Request a Reservation</h1>
     <div class="container flex flex-col sm:flex-row justify-center gap-20 sm:gap-14">
         <div class="flex justify-center">
-            <img class="border-[6px] border-secondary rounded-lg w-96" src=<?= URLROOT . "/images/dishes/23808324.jpg" ?> alt="Menu">
+            <img class="border-[6px] border-secondary rounded-lg w-96 h-fit" src=<?= URLROOT . "/images/dishes/23808324.jpg" ?> alt="Menu">
         </div>
         <form id="menu-form" action=<?= URLROOT . '/reservations/create'?> method="POST" class="sm:w-1/2">
             <div class="flex flex-col gap-6">
@@ -66,7 +66,7 @@
 
                 for (let menu of array) {
                     let style = menu == lastMenu ? "": "border-b";
-                    menusOptionsContainer.innerHTML += `<span data-id='${menu["id"]}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${htmlspecialchars(menu["name"])}</span>`;
+                    menusOptionsContainer.innerHTML += `<span data-id='${menu["id"]}' class='cursor-pointer hover:bg-slate-200 px-2 py-1 ${style} border-b-black'>${menu["name"]}</span>`;
                 }
             } else {
                 menusOptionsContainer.innerHTML = "<span class='px-2 py-1 text-gray-500'>No menus available</span>";

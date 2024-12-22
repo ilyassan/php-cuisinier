@@ -33,7 +33,7 @@
                 <?php
                     foreach ($data as $reservation) {
                 ?>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr onclick="<?="window.location.href = '". URLROOT ."/reservations/show/" . $reservation['id'] . "'"?>" class="cursor-pointer bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                            <?= htmlspecialchars($reservation["menu_name"]) ?>
                         </th>
